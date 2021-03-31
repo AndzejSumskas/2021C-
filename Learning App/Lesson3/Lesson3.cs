@@ -19,34 +19,21 @@ namespace Learning_App.Lesson3
             Console.WriteLine("Parasykite sveikaji skaiciu.");
             int skaicius3 = Convert.ToInt32(Console.ReadLine());
 
-            if(skaicius1 > skaicius2 && skaicius1 >skaicius3)
+            switch (skaicius1)
             {
-                Console.WriteLine(1);
-            }
-            else if(skaicius2 > skaicius3 && skaicius2 > skaicius1)
-            {
-                Console.WriteLine(2);
-            }
-            else if(skaicius3 > skaicius1 && skaicius3 > skaicius2)
-            {
-                Console.WriteLine(3);
-            }
-            
-
-            if(skaicius1 >skaicius2 && skaicius1 <100)
-            {
-                Console.WriteLine("sk1 > sk2 ir <100");
-            }
-            if(skaicius2 >0 && skaicius2 >skaicius1)
-            {
-                Console.WriteLine("sk2 >0 ir sk2>sk1");
-            }
-            if(skaicius1>skaicius2)
-            {
-
-            }
-                        
+                case 1:
+                    Console.WriteLine(skaicius1 + skaicius2 + skaicius3);
+                    break;
+                case 2:
+                    Console.WriteLine(skaicius1 - skaicius3);
+                    break;
+                case 3:
+                    Console.WriteLine(skaicius2 * skaicius3);
+                    break;
+                default:
+                    Console.WriteLine("Klaida");
+                    break;
+            }                
         }
-     }
-    
+     }  
 }
