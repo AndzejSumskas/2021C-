@@ -15,46 +15,46 @@ namespace Learning_App.Lesson2.HomeWork2
 
             if (skaicius == 1)
             {
-                Console.WriteLine("Puiku");
+                Console.WriteLine("Labai blogai");
             }
             else if (skaicius == 2)
             {
-                Console.WriteLine("Labai gerai");
+                Console.WriteLine("Labai blogai");
 
             }
             else if (skaicius == 3)
             {
-                Console.WriteLine("Labai gerai");
+                Console.WriteLine("Labai blogai");
 
             }
             else if (skaicius == 4)
             {
-                Console.WriteLine("Gerai");
+                Console.WriteLine("Bent teigiamai");
 
             }
             else if (skaicius == 5)
             {
-                Console.WriteLine("Puiku");
+                Console.WriteLine("Vidutiniskai");
 
             }
             else if (skaicius == 6)
             {
-                Console.WriteLine("Puiku");
+                Console.WriteLine("Gerai");
 
             }
             else if (skaicius == 7)
             {
-                Console.WriteLine("Puiku");
+                Console.WriteLine("Gerai");
 
             }
             else if (skaicius == 8)
             {
-                Console.WriteLine("Puiku");
+                Console.WriteLine("Labai gerai");
 
             }
             else if (skaicius == 9)
             {
-                Console.WriteLine("Puiku");
+                Console.WriteLine("Labai gerai");
 
             }
             else if (skaicius == 10)
@@ -68,4 +68,5 @@ namespace Learning_App.Lesson2.HomeWork2
 
             }
         }
+    }
 }

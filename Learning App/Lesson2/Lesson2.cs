@@ -8,7 +8,7 @@ namespace Learning_App.Lesson2
 {
     class Lesson2
     {
-        static void Main(string[] args)
+        static void Main2(string[] args)
         {
             //Aritmetiniai veiskniai
 
