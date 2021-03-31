@@ -19,12 +19,11 @@ namespace Learning_App.Lesson3
             Console.WriteLine("Parasykite sveikaji skaiciu.");
             int skaicius3 = Convert.ToInt32(Console.ReadLine());
 
-
             if(skaicius1 > skaicius2 && skaicius1 >skaicius3)
             {
                 Console.WriteLine(1);
             }
-            else if(skaicius2 > skaicius3 && skaicius2 > skaicius3)
+            else if(skaicius2 > skaicius3 && skaicius2 > skaicius1)
             {
                 Console.WriteLine(2);
             }
@@ -33,9 +32,6 @@ namespace Learning_App.Lesson3
                 Console.WriteLine(3);
             }
             
-
-
-
 
             if(skaicius1 >skaicius2 && skaicius1 <100)
             {
@@ -49,9 +45,7 @@ namespace Learning_App.Lesson3
             {
 
             }
-
-            
-
+                        
         }
      }
     
