@@ -21,14 +21,14 @@ namespace Learning_App.Lesson3
 
             switch (skaicius1)
             {
-                case 1:
-                    Console.WriteLine(skaicius1 + skaicius2 + skaicius3);
+                case 3:
+                    Console.WriteLine(skaicius2 * skaicius3);
                     break;
                 case 2:
                     Console.WriteLine(skaicius1 - skaicius3);
                     break;
-                case 3:
-                    Console.WriteLine(skaicius2 * skaicius3);
+                case 1:
+                    Console.WriteLine(skaicius1 + skaicius2 + skaicius3);
                     break;
                 default:
                     Console.WriteLine("Klaida");
