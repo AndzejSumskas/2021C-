@@ -19,6 +19,7 @@ namespace Learning_App.Lesson3
             Console.WriteLine("Parasykite sveikaji skaiciu.");
             int skaicius3 = Convert.ToInt32(Console.ReadLine());
 
+<<<<<<< HEAD
             if(skaicius1>skaicius2 && skaicius1 >skaicius3)
             {
                 Console.WriteLine("1 skaicius didziausias.");
@@ -63,6 +64,23 @@ namespace Learning_App.Lesson3
             {
                 Console.WriteLine("4");
             }
+=======
+            switch (skaicius1)
+            {
+                case 3:
+                    Console.WriteLine(skaicius2 * skaicius3);
+                    break;
+                case 2:
+                    Console.WriteLine(skaicius1 - skaicius3);
+                    break;
+                case 1:
+                    Console.WriteLine(skaicius1 + skaicius2 + skaicius3);
+                    break;
+                default:
+                    Console.WriteLine("Klaida");
+                    break;
+            }                
+>>>>>>> Testing
         }
      }  
 }
