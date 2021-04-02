@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Learning_App.Lesson2.HomeWork2
 {
-    static class HomeWork2
+    static class Program
     {
-        static void Main3()
+        static void Main()
         {
             Console.WriteLine("Iveskite pazymi");
             int skaicius = Convert.ToInt32(Console.ReadLine());

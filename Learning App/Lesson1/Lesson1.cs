@@ -4,10 +4,10 @@ namespace Learning_App
 {
     class Program
     {
-        static void Main1(string[] args)
+        static void Main(string[] args)
         {
             // Komentaras
-            /*Console.WriteLine("Hello World!"); */
+            //Console.WriteLine("Hello World!");
 
             /*Console.ReadLine();
             Console.Write("eilute ");
@@ -17,7 +17,6 @@ namespace Learning_App
             Console.Write("eilute ");
             Console.WriteLine("writeline");
             
-
             Console.WriteLine("Man " + 30 + " met.");
             Console.WriteLine("50 = {0} + {1}", 20, 30);
 
@@ -43,11 +42,9 @@ namespace Learning_App
 
             //double test = 123; //int
 
-
             //name = "vardas" + (myAge + 10);
 
             //Console.WriteLine(name);
-
 
             //    char simbolis = ' ';
 
@@ -59,15 +56,12 @@ namespace Learning_App
 
             //    Console.WriteLine("vardas = " + vardas);
 
-
             //    Console.WriteLine("Parasykite varda");
             //    string vardas1 = Console.ReadLine();
             //    Console.WriteLine("Parasykite pavarde");
             //    string pavarde1 = Console.ReadLine();
 
             //    Console.WriteLine("Jusu vardas = {0}, pavarde = {1}", vardas1, pavarde1);
-
-
 
             //    //Console.WriteLine("Iveskite sveikaji skaiciu");
             //    //int data = Convert.ToInt32(Console.ReadLine());
@@ -99,7 +93,6 @@ namespace Learning_App
 
             //    //*******************************************************************
 
-
             //    //Uzduotis2
 
             //    int a2 = 10;
@@ -108,11 +101,6 @@ namespace Learning_App
             //    int c2 = b2;
             //    b2 = a2;
             //    a2 = c2;
-            //
-
-            
-
-
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Learning_App.Lesson2
 {
-    class Lesson2
+    class Program
     {
-        static void Main2(string[] args)
+        static void Main(string[] args)
         {
             //Aritmetiniai veiskniai
 
@@ -30,8 +30,6 @@ namespace Learning_App.Lesson2
             //double ilgis = 2 * Math.PI * spindulys;
 
             //Console.WriteLine($"Plotas - {plotas}, ilgis - {ilgis}");
-
-
 
             //Console.WriteLine("Parasykite atstuma metrais");
 
@@ -142,12 +140,7 @@ namespace Learning_App.Lesson2
             //}
 
             //*******************************************
-
-            
-            
-
+                       
         }
-
-
     }
 }
