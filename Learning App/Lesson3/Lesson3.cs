@@ -19,21 +19,50 @@ namespace Learning_App.Lesson3
             Console.WriteLine("Parasykite sveikaji skaiciu.");
             int skaicius3 = Convert.ToInt32(Console.ReadLine());
 
-            switch (skaicius1)
+            if(skaicius1>skaicius2 && skaicius1 >skaicius3)
             {
-                case 1:
-                    Console.WriteLine(skaicius1 + skaicius2 + skaicius3);
-                    break;
-                case 2:
-                    Console.WriteLine(skaicius1 - skaicius3);
-                    break;
-                case 3:
-                    Console.WriteLine(skaicius2 * skaicius3);
-                    break;
-                default:
-                    Console.WriteLine("Klaida");
-                    break;
-            }                
+                Console.WriteLine("1 skaicius didziausias.");
+            }
+            else if(skaicius2 > skaicius1 && skaicius2 > skaicius3)
+            {
+                Console.WriteLine("2 skaicius didziausias.");
+            }
+            else if (skaicius3 > skaicius2 && skaicius3 > skaicius1)
+            {
+                Console.WriteLine("3 skaicius didziausias.");
+            }
+            else if (skaicius1 == skaicius2 && skaicius1 > skaicius3)
+            {
+                Console.WriteLine("1 ir 2 skaiciai didziausi.");
+            }
+            else if (skaicius1 == skaicius3 && skaicius1 > skaicius2)
+            {
+                Console.WriteLine("1 ir 3 skaiciai didziausi.");
+            }
+            else if (skaicius2 == skaicius3 && skaicius2 > skaicius1)
+            {
+                Console.WriteLine("2 ir 3 skaiciai didziausi.");
+            }
+            else { Console.WriteLine("Visi skaiciai lygus."); }
+
+            //***********************************************
+
+            if (skaicius1 > skaicius2 && skaicius1 < 100) 
+            {
+                Console.WriteLine("1");
+            }
+            if (skaicius2 > 0 && skaicius2 > skaicius1) 
+            {
+                Console.WriteLine("2");
+            }
+            if (skaicius1 > skaicius2 && skaicius1 > skaicius3 || skaicius1 > 0)
+            {
+                Console.WriteLine("3");
+            }
+            if (5 <= skaicius3 && skaicius3 >= 10 || skaicius3 > skaicius2)
+            {
+                Console.WriteLine("4");
+            }
         }
      }  
 }
