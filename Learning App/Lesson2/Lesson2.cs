@@ -138,9 +138,6 @@ namespace Learning_App.Lesson2
             //{
             //    Console.WriteLine("Nelyginis");
             //}
-
-            //*******************************************
-                       
         }
     }
 }

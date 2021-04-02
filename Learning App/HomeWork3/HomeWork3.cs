@@ -119,7 +119,7 @@ namespace Learning_App.Lesson3.HomeWork3
             double pelnas = pajamos - islaidos;
 
             Console.WriteLine($"Per vieną darbo dieną kepykla iškepa {iskeptuKepSkaiciusPerDiena} duonos kepalų.");
-            Console.WriteLine($"Visu kelapų savikaina {islaidos}.");
+            Console.WriteLine($"Visų kelapų savikaina {islaidos}.");
             Console.WriteLine($"Gautos pajamos pardavus {pajamos}.");
             Console.WriteLine($"Pelnas = {pelnas}.");
 
