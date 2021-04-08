@@ -142,30 +142,30 @@ namespace Learning_App.Lesson4
 
             //********************************************************
 
-            const int totalseetcount = 8;
-            const int windowseetcount = 4;
-            int allseetstaken = 0;
-            int windowseetstaken = 0;
-            string choise;
+            //const int totalseetcount = 8;
+            //const int windowseetcount = 4;
+            //int allseetstaken = 0;
+            //int windowseetstaken = 0;
+            //string choise;
 
            
 
-            while (allseetstaken < totalseetcount || windowseetstaken < windowseetcount)
-            {
-                do
-                {
-                    Console.WriteLine("Ar norite sedeti prie lango? [yes/no]");
-                    choise = Convert.ToString(Console.ReadLine());
-                } while (choise != "yes" && choise != "no");
+            //while (allseetstaken < totalseetcount || windowseetstaken < windowseetcount)
+            //{
+            //    do
+            //    {
+            //        Console.WriteLine("Ar norite sedeti prie lango? [yes/no]");
+            //        choise = Convert.ToString(Console.ReadLine());
+            //    } while (choise != "yes" && choise != "no");
 
-                if (choise == "yes")
-                {
-                    windowseetstaken++;   
-                }
-                allseetstaken++;
+            //    if (choise == "yes")
+            //    {
+            //        windowseetstaken++;   
+            //    }
+            //    allseetstaken++;
 
 
-            }
+            //}
             //*******************************************
 
             //int suma = 0;
