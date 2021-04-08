@@ -57,10 +57,9 @@ namespace Learning_App.HomeWork4
                 else
                 {
                     Console.WriteLine("Atspejote is {0} karto!", spejimuSkaicius);
+                    arAtspeta = false;
                 }
             }
-
-
         }
     }
 }
