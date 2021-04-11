@@ -17,7 +17,7 @@ namespace Learning_App.HomeWork5
             //PapildomaUzduotisInRange();    // 2 uzduotis
             //PapildomaUzduotisIsPrimal();     // 3 uzduotis
             //Console.WriteLine($" D6:{D6()}, D10:{D10()}, D20:{D20()}");     //4uzduotis
-            GrazinamasSkaiciusReziuose(-18, 256);
+            //GrazinamasSkaiciusReziuose(-18, 256);          //5uzduotis
 
         }
 

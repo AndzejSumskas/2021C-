@@ -4,11 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Learning_App</RootNamespace>
-    <StartupObject>Learning_App.HomeWork5.Program</StartupObject>
+    <StartupObject>Learning_App.BigHomeWork1.Program</StartupObject>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="BigHomeWork1\" />
-  </ItemGroup>
 
 </Project>
