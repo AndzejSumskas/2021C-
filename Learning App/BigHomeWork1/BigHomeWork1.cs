@@ -16,74 +16,74 @@ namespace Learning_App.BigHomeWork1
 
             //bool tikrintiArSkaiciusReziuose = ArSkaiciusYraReziuose(tikrintiArSkaicius, ivestasTekstas);
 
-            Console.WriteLine(ChangeNumberToText(Convert.ToInt32(Console.ReadLine())));    // Skaiciu nuo -9 iki 9 atspausdina zodziais
+            Console.WriteLine(ChangeNumberToTextMinusPliusDevyni(Convert.ToInt32(Console.ReadLine())));    // Skaiciu nuo -9 iki 9 atspausdina zodziais
 
-            Console.WriteLine(ChangeNumberToTextMinusPliusDevyniolika(Convert.ToInt32(Console.ReadLine())));
-
-            
+            Console.WriteLine(ChangeNumberToTextMinusPliusDevyniolika(Convert.ToInt32(Console.ReadLine()))); // Skaiciu nuo -19 iki 19 atspausdina zodziais
 
         }
        
-        static string ChangeNumberToText(int ivestasSkaicius)
+        static string ChangeNumberToTextMinusPliusDevyni(int ivestasSkaicius)
         {
-            int laikinaSkacius = ivestasSkaicius;
-            string zenklas = "";
-            string skaicius = "";
-            if (ivestasSkaicius < 0)
+            if (ivestasSkaicius > -10 && ivestasSkaicius < 10)
             {
-                zenklas = "Minus ";
-                laikinaSkacius = ivestasSkaicius - ivestasSkaicius - ivestasSkaicius;
+                int laikinaSkacius = ivestasSkaicius;
+                string zenklas = "";
+                string skaicius = "";
+                if (ivestasSkaicius < 0)
+                {
+                    zenklas = "Minus ";
+                    laikinaSkacius = ivestasSkaicius - ivestasSkaicius - ivestasSkaicius;
+                }
+                else if (ivestasSkaicius > 0)
+                {
+                    zenklas = "Plius ";
+                }
+                switch (laikinaSkacius)
+                {
+                    case 0:
+                        skaicius = "Nulis";
+                        break;
+                    case 1:
+                        skaicius = "vienas";
+                        break;
+                    case 2:
+                        skaicius = "du";
+                        break;
+                    case 3:
+                        skaicius = "trys";
+                        break;
+                    case 4:
+                        skaicius = "keturi";
+                        break;
+                    case 5:
+                        skaicius = "penki";
+                        break;
+                    case 6:
+                        skaicius = "sesi";
+                        break;
+                    case 7:
+                        skaicius = "septyni";
+                        break;
+                    case 8:
+                        skaicius = "astuoni";
+                        break;
+                    case 9:
+                        skaicius = "devyni";
+                        break;
+                }
+                Console.WriteLine(zenklas + skaicius);
+                return zenklas + skaicius;
             }
-            else if (ivestasSkaicius > 0)
-            {
-                zenklas = "Plius ";
-            }
-            switch (laikinaSkacius)
-            {
-                case 0:
-                    skaicius = "Nulis";
-                    break;
-                case 1:
-                    skaicius = "vienas";
-                    break;
-                case 2:
-                    skaicius = "du";
-                    break;
-                case 3:
-                    skaicius = "trys";
-                    break;
-                case 4:
-                    skaicius = "keturi";
-                    break;
-                case 5:
-                    skaicius = "penki";
-                    break;
-                case 6:
-                    skaicius = "sesi";
-                    break;
-                case 7:
-                    skaicius = "septyni";
-                    break;
-                case 8:
-                    skaicius = "astuoni";
-                    break;
-                case 9:
-                    skaicius = "devyni";
-                    break;
-            }
-            Console.WriteLine(zenklas + skaicius);
-            return zenklas + skaicius;
+            else
+                return "Skaicius yra uz [-9..9] reziu ribos";
         }
-
-
-
         static string ChangeNumberToTextMinusPliusDevyniolika(int ivestasSkaicius)
         {
             if(ivestasSkaicius < 20 && ivestasSkaicius > -20)
             {
                 if(ivestasSkaicius < 10 && ivestasSkaicius > -10)
                 {
-                    return ChangeNumberToText(ivestasSkaicius);
+                    return ChangeNumberToTextMinusPliusDevyni(ivestasSkaicius);
                 }
                 else
                 {
@@ -137,7 +137,6 @@ namespace Learning_App.BigHomeWork1
                 }
             }
             return "Skaicius yra uz [-19..19] reziu ribos";
-
         }
 
         static bool ArSkaiciusYraReziuose(bool tikrintiArSkaiciusReziuose, string ivestasTekstas)
