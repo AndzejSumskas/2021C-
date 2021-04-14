@@ -10,13 +10,19 @@ namespace Learning_App.BigHomeWork1
     {
         static void Main(string[] args)
         {
+            string ivestasTekstas = IvestiesMetodas();
+            //Console.WriteLine(TikrintiArSkaicius(IvestiesMetodas()));
 
-            //IvestiesMetodas();
+        }
 
-            Console.WriteLine(TikrintiArSkaicius(IvestiesMetodas())); 
+        static bool ArSkaiciusYraReziuose(string zodis)
+        {
 
-           
-            
+            if (ArSkaiciusYraReziuose(IvestiesMetodas("Iveskite skaiciu[-9...9]")) == true)
+            {
+
+            }
+            return true;
         }
 
         static string IvestiesMetodas(string message = "Iveskite skaiciu [-9...9]")
@@ -39,7 +45,6 @@ namespace Learning_App.BigHomeWork1
                 for (int i = j; i < zodis.Length; i++)
                 {
                     simbolis = zodis[i];
-
                     switch (simbolis)
                     {
                         case '1':
@@ -63,8 +68,7 @@ namespace Learning_App.BigHomeWork1
                         case '0':
                             break;
                         default:
-                            return false;
-                            
+                            return false;           
                     }
                 }
                 return true;
