@@ -11,25 +11,42 @@ namespace Learning_App.BigHomeWork1
         static void Main(string[] args)
         {
             string ivestasTekstas = IvestiesMetodas();
-            //Console.WriteLine(TikrintiArSkaicius(IvestiesMetodas()));
+
+            bool tikrintiArSkaicius = TikrintiArSkaicius(ivestasTekstas);
+
+            bool tikrintiArSkaiciusReziuose = ArSkaiciusYraReziuose(tikrintiArSkaicius, ivestasTekstas);
 
         }
 
-        static bool ArSkaiciusYraReziuose(string zodis)
+        static bool ArSkaiciusYraReziuose(bool tikrintiArSkaiciusReziuose, string ivestasTekstas)
         {
 
-            if (ArSkaiciusYraReziuose(IvestiesMetodas("Iveskite skaiciu[-9...9]")) == true)
+            if (tikrintiArSkaiciusReziuose == true)
             {
-
+                int skaicius = Convert.ToInt32(ivestasTekstas);
+                if (skaicius >= -9 && skaicius <= 9)
+                {
+                    Console.WriteLine("Skaicius yra reziuose [-9..9]");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Skaicius yra uz [-9..9] reziu ribos");
+                    return false;
+                }
             }
-            return true;
+                    else
+            {
+                Console.WriteLine("Ivestis: ne skaicius");
+                return false;
+            }
         }
 
         static string IvestiesMetodas(string message = "Iveskite skaiciu [-9...9]")
         {
             Console.WriteLine(message);
             string ivestis = Convert.ToString(Console.ReadLine());
-            Console.WriteLine(ivestis);
+            Console.WriteLine($"Ivestis: {ivestis}");
             return ivestis;
         }
         static bool TikrintiArSkaicius(string zodis)
@@ -68,9 +85,11 @@ namespace Learning_App.BigHomeWork1
                         case '0':
                             break;
                         default:
+                            Console.WriteLine("Ivestis ne skaicius.");
                             return false;           
                     }
                 }
+                Console.WriteLine("Ivestis yra skaicius");
                 return true;
             }
         }
