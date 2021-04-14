@@ -10,11 +10,133 @@ namespace Learning_App.BigHomeWork1
     {
         static void Main(string[] args)
         {
-            string ivestasTekstas = IvestiesMetodas();
+            //string ivestasTekstas = IvestiesMetodas();
 
-            bool tikrintiArSkaicius = TikrintiArSkaicius(ivestasTekstas);
+            //bool tikrintiArSkaicius = TikrintiArSkaicius(ivestasTekstas);
 
-            bool tikrintiArSkaiciusReziuose = ArSkaiciusYraReziuose(tikrintiArSkaicius, ivestasTekstas);
+            //bool tikrintiArSkaiciusReziuose = ArSkaiciusYraReziuose(tikrintiArSkaicius, ivestasTekstas);
+
+            Console.WriteLine(ChangeNumberToText(Convert.ToInt32(Console.ReadLine())));    // Skaiciu nuo -9 iki 9 atspausdina zodziais
+
+            Console.WriteLine(ChangeNumberToTextMinusPliusDevyniolika(Convert.ToInt32(Console.ReadLine())));
+
+            
+
+        }
+       
+        static string ChangeNumberToText(int ivestasSkaicius)
+        {
+            int laikinaSkacius = ivestasSkaicius;
+            string zenklas = "";
+            string skaicius = "";
+            if (ivestasSkaicius < 0)
+            {
+                zenklas = "Minus ";
+                laikinaSkacius = ivestasSkaicius - ivestasSkaicius - ivestasSkaicius;
+            }
+            else if (ivestasSkaicius > 0)
+            {
+                zenklas = "Plius ";
+            }
+            switch (laikinaSkacius)
+            {
+                case 0:
+                    skaicius = "Nulis";
+                    break;
+                case 1:
+                    skaicius = "vienas";
+                    break;
+                case 2:
+                    skaicius = "du";
+                    break;
+                case 3:
+                    skaicius = "trys";
+                    break;
+                case 4:
+                    skaicius = "keturi";
+                    break;
+                case 5:
+                    skaicius = "penki";
+                    break;
+                case 6:
+                    skaicius = "sesi";
+                    break;
+                case 7:
+                    skaicius = "septyni";
+                    break;
+                case 8:
+                    skaicius = "astuoni";
+                    break;
+                case 9:
+                    skaicius = "devyni";
+                    break;
+            }
+            Console.WriteLine(zenklas + skaicius);
+            return zenklas + skaicius;
+        }
+
+
+
+        static string ChangeNumberToTextMinusPliusDevyniolika(int ivestasSkaicius)
+        {
+            if(ivestasSkaicius < 20 && ivestasSkaicius > -20)
+            {
+                if(ivestasSkaicius < 10 && ivestasSkaicius > -10)
+                {
+                    return ChangeNumberToText(ivestasSkaicius);
+                }
+                else
+                {
+                    int laikinaSkacius = ivestasSkaicius;
+                    string zenklas = "";
+                    string skaicius = "";
+                    if (ivestasSkaicius < 0)
+                    {
+                        zenklas = "Minus ";
+                        laikinaSkacius = ivestasSkaicius-ivestasSkaicius-ivestasSkaicius;
+                    }
+                    else if (ivestasSkaicius > 0)
+                    {
+                        zenklas = "Plius ";
+                    }
+                    switch (laikinaSkacius)
+                    {
+                        case 10:
+                            skaicius = "desimt";
+                            break;
+                        case 11:
+                            skaicius = "vienuolika";
+                            break;
+                        case 12:
+                            skaicius = "dvylika";
+                            break;
+                        case 13:
+                            skaicius = "trylika";
+                            break;
+                        case 14:
+                            skaicius = "keturiolika";
+                            break;
+                        case 15:
+                            skaicius = "penkiolika";
+                            break;
+                        case 16:
+                            skaicius = "sesiolika";
+                            break;
+                        case 17:
+                            skaicius = "septyniiolika";
+                            break;
+                        case 18:
+                            skaicius = "astuoniolika";
+                            break;
+                        case 19:
+                            skaicius = "devyniolika";
+                            break;
+                    }
+                    Console.WriteLine(zenklas + skaicius);
+                    return zenklas + skaicius;
+                }
+            }
+            return "Skaicius yra uz [-19..19] reziu ribos";
 
         }
 
