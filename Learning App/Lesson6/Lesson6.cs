@@ -12,20 +12,71 @@ namespace Learning_App.Lesson6
         {
             string[] tekstai = new string[5];
 
-            string[] tesada = new[] { "1sdasd", "2sdas", "3sdasd", "4sdasd", "5sdasd" };
+            //string[] tesada = new[] { "1sdasd", "2sdas", "3sdasd", "4sdasd", "5sdasd" };
             //PrintArray(tekstai);
 
-           // PrintArrayTextInOneLine(tesada); //Tektas vienoje eiluteje be tarpu
-           // PrintArrayTextInOneLineViceVersa(tesada);  //Tektas vienuoje eiluteje be tarpu(atvirkciai)
+            //PrintArrayTextInOneLine(tesada); //Tektas vienoje eiluteje be tarpu
+            //PrintArrayTextInOneLineViceVersa(tesada);  //Tektas vienuoje eiluteje be tarpu(atvirkciai)
 
             //Exercise2(Data);
 
-            MasyvaSuSauktukaisGale(Data);
+            //MasyvaSuSauktukaisGale(Data);            // Pries taip privalo veikti Execose2, kitaip masyvas netures sauktuku
 
-            MasyvaSuSauktukaisGale(Data);            // Pries taip privalo veikti Execose2, kitaip masyvas netures sauktuku
+            //************Papildomos uzduotys********************
+
+            //int[] ArrayReferenceTest = new[] { 609, 101, 25, 69, 25 };
+            //int[] cloneArray = new int[5];
+
+            //cloneArray = (int[]) ArrayReferenceTest.Clone();
+
+            //PrintArray(ArrayReferenceTest);
+
+            //SpoilArray(ArrayReferenceTest);
+
+            //ArrayReferenceTest = cloneArray;
+
+            //PrintArray(ArrayReferenceTest);
+
+            //************Papildomos uzduotys********************
+            int[] skaiciai = new[] { 1, 2, 5, 3, 6, 7, 8, 9 };
+            double[] skaiciaiDuoble = new[] { 2.35, 2.6548, 9.66998, 555.6645, 654.654, 56 };
+            string[] masyvasTeksto = new[] { "labas", "pasauli", "Kaip sekasi", "sdfsdfsdf", "sdfsdhdfdf" };
+
+            ParamsTasting(skaiciai, skaiciaiDuoble, masyvasTeksto);
+
+
         }
 
-        
+        private static void ParamsTasting(params object[] rest)
+        {
+            foreach (var objektas in rest)
+            {
+                Console.Write(objektas + " ");
+            }
+        }
+
+
+        //****************************************************
+        static void PrintArray(int[] array)
+        {
+            foreach (var item in array)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
+        }
+
+        static void SpoilArray(int[]array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = -1;
+                //Console.Write(array[i] + " ");
+            }
+            Console.WriteLine();
+        }
+
+        //**************************************************************
         static string PrintArrayTextInOneLineViceVersa(string[] txt)
         {
             string[] tempArray = new string [5];
