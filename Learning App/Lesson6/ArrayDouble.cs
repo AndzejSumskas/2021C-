@@ -10,6 +10,12 @@ namespace Learning_App.Lesson6
     {
         static void Main()
         {
+            
+        }
+
+
+        static void MasyvasMasyve()
+        {
             int[][] ArrayInArray;
             ArrayInArray = new int[][]
             {
@@ -18,7 +24,7 @@ namespace Learning_App.Lesson6
                 new int[]{111,222,333,444,555}
             };
 
-            Console.WriteLine(ArrayInArray[0] [4]);
+            Console.WriteLine(ArrayInArray[0][4]);
             ArrayInArray[0][4] = 698;
             Console.WriteLine(ArrayInArray[0][4]);
 
