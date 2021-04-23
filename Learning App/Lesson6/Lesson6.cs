@@ -11,8 +11,23 @@ namespace Learning_App.Lesson6
         static void Main(string[] args)
         {
             string[] tekstai = new string[5];
+           
+            string[] tesada = new[] { "1sdasd", "2sdas", "3sdasd", "4sdasd", "5sdasd" };
 
-            //string[] tesada = new[] { "1sdasd", "2sdas", "3sdasd", "4sdasd", "5sdasd" };
+            //****************************************************
+
+            //int counter = 0;
+
+            Program p = new Program();
+
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    p.AddData($"Tomas{i}", i);
+            //}
+            //p.DataPrint();
+            //****************************************************
+
+
             //PrintArray(tekstai);
 
             //PrintArrayTextInOneLine(tesada); //Tektas vienoje eiluteje be tarpu
@@ -45,9 +60,53 @@ namespace Learning_App.Lesson6
             ParamsTasting(skaiciai, skaiciaiDuoble, masyvasTeksto);
 
 
+            int[] manoMasyvas = { 111, 222, 333, 444 };
+
+            int[] maniMasina = new int[1];
+
+            Console.WriteLine($"{manoMasyvas[0]} {manoMasyvas[1]} {manoMasyvas[2]} {manoMasyvas[3]}");
+
+            SugadintiMasyva(manoMasyvas);
+            Console.WriteLine($"{manoMasyvas[0]} {manoMasyvas[1]} {manoMasyvas[2]} {manoMasyvas[3]}");
+
+
+            maniMasina =(int[])(manoMasyvas.Clone());
+
+            foreach (var item in maniMasina)
+            {
+                Console.WriteLine(item); 
+            }
+
+        
         }
 
-        private static void ParamsTasting(params object[] rest)
+        static void SugadintiMasyva(int[] masyvas)
+        {
+            for (int i = 0; i < masyvas.Length; i++)
+            {
+                masyvas[i] = -1;
+            }
+        }
+
+        private string[] data = new string[10];
+
+
+        public void AddData(string tesktas, int skaicius)
+        {
+            data[skaicius] = tesktas;
+        }
+
+        public void DataPrint()
+        {
+            foreach (var item in data)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        
+
+        static void ParamsTasting(params object[] rest)
         {
             foreach (var objektas in rest)
             {
@@ -80,7 +139,7 @@ namespace Learning_App.Lesson6
         static string PrintArrayTextInOneLineViceVersa(string[] txt)
         {
             string[] tempArray = new string [5];
-            int counter = 4;
+            int counter = tempArray.Length - 1;
             foreach (var item in txt)
             {
                 tempArray[counter] = item;

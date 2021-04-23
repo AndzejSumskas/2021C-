@@ -10,14 +10,21 @@ namespace Learning_App.GameSample.Game
     {
         private Frame border;
 
-        public Window(int x, int y, int width, int height, Frame border) : base(x, y, width, height)
+        public Window(int x, int y, int width, int height, char borderChar) : base(x, y, width, height)
         {
-            this.border = border;
+            X = x;
+            Y = y;
+            base.width = width;
+            base.height = height;
+
+
+            border = new Frame(x, Y, width, height, borderChar);
         }
 
+       
         public void Render()
         {
-
+            border.Render();
         }
     }
 }
