@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Learning_App.test
+namespace Learning_App.Lesson12.InterfaceTask.Interfaces
 {
-    class dsfsdfsdfsdfsdfsd
+    interface IPrintable
     {
+        void Print();
     }
 }

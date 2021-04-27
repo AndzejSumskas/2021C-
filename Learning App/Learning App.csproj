@@ -4,11 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Learning_App</RootNamespace>
-<<<<<<< HEAD
-    <StartupObject>Learning_App.Lesson6.ArrayDouble</StartupObject>
-=======
-    <StartupObject>Learning_App.Lesson6.Program</StartupObject>
->>>>>>> main
+    <StartupObject>Learning_App.Lesson12.Lesson12</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

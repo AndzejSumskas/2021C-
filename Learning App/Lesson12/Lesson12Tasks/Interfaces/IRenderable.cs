@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Learning_App.test
+namespace Learning_App.Lesson12.Lesson12Tasks.Interfaces
 {
-    class test
+    interface IRenderable
     {
+        void Render();
     }
 }
