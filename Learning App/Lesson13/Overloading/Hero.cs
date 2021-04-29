@@ -57,7 +57,6 @@ namespace Learning_App.Lesson13.Overloading
                 ageToString = Convert.ToString("");
             }
           
-
             Console.WriteLine(name+ " " + country + " " + ageToString + " " + power);
         }
 
