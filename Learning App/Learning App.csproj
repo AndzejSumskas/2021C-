@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Learning_App</RootNamespace>
-    <StartupObject>Learning_App.Lesson12.Lesson12</StartupObject>
+    <StartupObject>Learning_App.Lesson13.Lesson13</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

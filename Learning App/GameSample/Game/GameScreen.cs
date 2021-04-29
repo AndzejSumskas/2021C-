@@ -6,22 +6,21 @@ using System.Threading.Tasks;
 using Learning_App.GameSample;
 using Learning_App.GameSample.Game;
 
+
 namespace Learning_App.GameSample.Game
 {
     class GameScreen
     {
-        private int Width;
-        private int Height;
+        private int width;
+        private int height;
+
         private Hero hero;
-
-        private List<Unit> units = new List<Unit>();
-
         private List<Enemy> enemies = new List<Enemy>();
 
         public GameScreen(int width, int height)
         {
-            Width = width;
-            Height = height;
+            this.width = width;
+            this.height = height;
         }
 
         public void SetHero(Hero hero)
@@ -29,41 +28,35 @@ namespace Learning_App.GameSample.Game
             this.hero = hero;
         }
 
-        public void MoveHeroRight(Hero hero)
-        {
-            hero.MoveRight();
-        }
-        public void MoveHeroLeft(Hero hero)
-        {
-            hero.MoveLeft();
-        }
-
         public void AddEnemy(Enemy enemy)
         {
             enemies.Add(enemy);
         }
 
-        public void MoveAllEnemiesDown()
+        public void Render()
         {
-            foreach (Enemy enemy in enemies)
+            hero.PrintInfo();
+            foreach (var enemy in enemies)
             {
-                enemy.MoveDown();
+                enemy.PrintInfo();
             }
         }
 
-        public void MoveAllEnemiesUp()
+        public void MoveHeroLeft()
         {
-            foreach (Enemy enemy in enemies)
-            {
-                enemy.MoveUp();
-            }
+            hero.MoveLeft();
+        }
+
+        public void MoveHeroRight()
+        {
+            hero.MoveRight();
         }
 
         public Enemy GetEnemyById(int id)
         {
-            foreach(Enemy enemy in enemies)
+            foreach (var enemy in enemies)
             {
-                if(enemy.GetId() == id)
+                if (enemy.GetId() == id)
                 {
                     return enemy;
                 }
@@ -71,16 +64,14 @@ namespace Learning_App.GameSample.Game
             return null;
         }
 
-        public void Render()
+        public void MoveAllEnemiesDown()
         {
-            hero.PrintInfo();
-
-            foreach(Enemy enemy in enemies)
+            foreach (var enemy in enemies)
             {
-                enemy.PrintInfo();
+                enemy.MoveDown();
             }
         }
 
-        
+
     }
 }

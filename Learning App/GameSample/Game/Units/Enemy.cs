@@ -7,31 +7,36 @@ using Learning_App.GameSample;
 
 namespace Learning_App.GameSample.Game
 {
-    class Enemy : Unit
+    class Enemy //: Unit
     {
-        private int Id;
+        private int id;
+        private int x;
+        private int y;
+        private string name;
 
-
-        public Enemy(int id, int x, int y, string name) : base(x, y, name)
+        public Enemy(int id, string name, int x, int y)
         {
-            Id = id;
-           
-        }
-
-        public void MoveUp()
-        {
-            Y--;
+            this.id = id;
+            this.name = name;
+            this.x = x;
+            this.y = y;
         }
 
         public void MoveDown()
         {
-            Y++;
+            y++;
         }
 
+        public void PrintInfo()
+        {
+            Console.WriteLine($"Enemy {id} : {name} {x}*{y}");
+
+        }
         public int GetId()
         {
-            return Id;
+            return id;
         }
-       
     }
+
 }
+

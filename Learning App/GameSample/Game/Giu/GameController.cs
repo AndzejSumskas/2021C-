@@ -9,45 +9,25 @@ namespace Learning_App.GameSample.Game
 {
     class GameController
     {
-
-        internal void StartGame()
+        public void StartGame()
         {
-            GameScreen gameScreen = new GameScreen(200, 80);
+            GameScreen gameScreen = new GameScreen(200, 40);
+            gameScreen.SetHero(new Hero("Rand al'Thor", 5, 5));
 
-
-            gameScreen.SetHero(new Hero(5, 5, "Thor"));
-
-            Hero hero = new Hero(5, 5, "Jack");
-            Hero hero2 = new Hero(5, 5, "Leonidas");
-
-            Unit unit1 = new Unit(6, 9, "Kongas");
-
-            unit1.PrintInfo();
-
-
-            hero.PrintInfo();
-            hero.MoveRight();
-            hero.PrintInfo();
-
-
-            Random rng = new Random();
-            int uniqyeId = 0;
+            int uniqueId = 0;
+            Random rnd = new Random();
             for (int i = 0; i < 10; i++)
             {
-                gameScreen.AddEnemy(new Enemy(uniqyeId, rng.Next(0, 200), rng.Next(0, 80), ("EnemyNr" + uniqyeId)));
-                uniqyeId++;
+                gameScreen.AddEnemy(new Enemy(uniqueId, "EnemyNr" + uniqueId, rnd.Next(0, 10), rnd.Next(0, 100)));
+                uniqueId++;
             }
 
             gameScreen.Render();
 
+            gameScreen.MoveHeroLeft();
             gameScreen.MoveAllEnemiesDown();
 
-            gameScreen.Render();
-            gameScreen.MoveAllEnemiesUp();
-
-
             gameScreen.GetEnemyById(2).MoveDown();
-
 
             gameScreen.Render();
         }

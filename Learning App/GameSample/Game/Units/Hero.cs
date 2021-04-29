@@ -6,21 +6,32 @@ using System.Threading.Tasks;
 
 namespace Learning_App.GameSample.Game
 {
-    class Hero : Unit
+    class Hero //: Unit
     {
-        public Hero(int x, int y, string name) : base(x, y, name)
+        private int x;
+        private int y;
+        private string name;
+
+        public Hero(string name, int x, int y)
         {
-            
+            this.name = name;
+            this.x = x;
+            this.y = y;
         }
 
         public void MoveRight()
         {
-            X += 1;
+            x++;
         }
 
         public void MoveLeft()
         {
-            X -= 1;
+            x--;
+        }
+
+        public void PrintInfo()
+        {
+            Console.WriteLine($"Hero : {name} {x}*{y}");
         }
     }
 }

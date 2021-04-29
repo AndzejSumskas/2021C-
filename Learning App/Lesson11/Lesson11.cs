@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Learning_App.Lesson11
 {
-    class Program
+    class Lesson11
     {
         static void Main()
         {
