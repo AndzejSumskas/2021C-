@@ -8,14 +8,9 @@ namespace Learning_App.Lesson14
 {
     class Human : LiveObject, IPrintMe
     {
-        public static Random rng = new Random();
+        static Random rng = new Random();
 
-        private string _name;
-
-        protected string Name
-        {
-            get { return _name; } }
-           
+        protected string _name;
 
         public Human(string name)
         {
@@ -29,6 +24,7 @@ namespace Learning_App.Lesson14
 
         public void PrintInfo()
         {
+            //Console.WriteLine("Name {0}", _name);
             Console.WriteLine("Generate live span: {0}", GetLiveSpan());
         }
 
