@@ -12,17 +12,15 @@ namespace Learning_App.Lesson14
 
         public Client(string _name) : base(_name)
         {
-            clientCount++;
+            Clientid = clientCount++;
         }
 
-        public int Clientid()
-        {
-            return clientCount;
-        }
+        public int Clientid { get; private set; }
+       
         public void PrintInfo()
         {
 
-            Console.WriteLine(_name);
+            Console.WriteLine(Name);
         }
     }
 }

@@ -13,19 +13,19 @@ namespace Learning_App.Lesson14
 
         private List<Client> clientList = new List<Client>();
 
-        private List<Worker> workerList = new List<Worker>();
-
-
-        public void AddClient(Client client)
-        {
-            clientList.Add(client);
-        }
+        private List<Worker> workerList = new List<Worker>();      
 
         public Company(Human boss, string name) : base(name)
         {
             _boss = boss;
             _name = name;
-            base._name = _name;
+        }
+
+        public Dog OfficePet { get; set; }
+
+        public void AddClient(Client client)
+        {
+            clientList.Add(client);
         }
 
         public void FireWorker(Worker worker)
@@ -61,8 +61,6 @@ namespace Learning_App.Lesson14
             PrintAllClients();
             PrintAllWorkers();
             OfficePet.PrintInfo();
-        }
-
-        public Dog OfficePet;
+        }    
     }
 }

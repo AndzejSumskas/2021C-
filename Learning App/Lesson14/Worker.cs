@@ -17,12 +17,12 @@ namespace Learning_App.Lesson14
 
         public int GetSalary()
         {
-            return 0;
+            return _salary;
         }
 
         public void PrintInfo()
         {
-            Console.WriteLine($"{_name} {_salary}" );
+            Console.WriteLine($"{Name} {_salary}" );
         }
 
         public void SetSalary(int salary)
