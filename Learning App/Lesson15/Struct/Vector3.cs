@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Learning_App.Lesson14
+namespace Learning_App.Lesson15
 {
-    class Class1
+    struct Vector3
     {
+        public int X;
+        public int Y;
+        public int Z;
     }
 }
