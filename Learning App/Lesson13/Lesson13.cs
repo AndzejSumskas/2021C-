@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Learning_App.Lesson13.PrintHelper;
 
 namespace Learning_App.Lesson13
 {
@@ -14,6 +15,26 @@ namespace Learning_App.Lesson13
     {
         
         static void Main()
+        {
+            //PrintHelper.PrintHelper.Print("Menesiai", "Sausis", "Vasaris", 3, '4', "Geguze" + 1);
+
+            PrintHelper.PrintHelper.PrintTable(1, "asdasd", 664, '*');
+                
+           
+        }
+
+        public static void Print(string message, string[] args)
+        { 
+            Console.Write(message + ": ");
+            for (int i = 0; i < args.Length; i++)
+            {
+                string item = Convert.ToString(args[i]);
+                Console.WriteLine(item + " ");
+               
+            }
+        }
+
+        public static void SimpleTask()
         {
             object number = 5;
             object text = "dsfsdf";
