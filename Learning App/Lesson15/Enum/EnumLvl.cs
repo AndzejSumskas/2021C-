@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Learning_App.Lesson15.Enum
 {
-    class EnumClass 
+    enum EnumLvl
     {
-        private string educationLevel { get; set; }
-
-        private int age { get; set; }
-
-       
+        Elementary,
+        Midle,
+        High
     }
 }

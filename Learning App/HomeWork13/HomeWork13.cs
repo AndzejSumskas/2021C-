@@ -19,7 +19,6 @@ namespace Learning_App.HomeWork13
 
             //StringHelper.SplitTextToWords2("Labas, as Tomas. Man astuoniolika metu. Gyvenu Kaune.");
 
-
             string txt = StringHelper.SplitCammelCase("Labas, As Tomas. Man Astuoniolika Metu. Gyvenu Kaune.");
 
             Console.WriteLine(txt);

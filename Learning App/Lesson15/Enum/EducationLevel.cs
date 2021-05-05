@@ -6,10 +6,30 @@ using System.Threading.Tasks;
 
 namespace Learning_App.Lesson15.Enum
 {
-    enum EducationLevel
+    class EducationLevel
     {
-        Elementary,
-        Midle,
-        High
+       EnumLvl LevelofEducation { get; set; }
+
+        public EducationLevel(EnumLvl levelofEducation)
+        {
+            LevelofEducation = levelofEducation;
+        }
+
+        public static void WriteEducationLevel(EducationLevel leveOfEducation)
+        {
+            
+            switch (leveOfEducation.LevelofEducation)
+            {
+                case EnumLvl.Elementary:
+                    Console.WriteLine("Education level: " + leveOfEducation.LevelofEducation);
+                    break;
+                case EnumLvl.Midle:
+                    Console.WriteLine("Education level: " + leveOfEducation.LevelofEducation);
+                    break;
+                case EnumLvl.High:
+                    Console.WriteLine("Education level: " + leveOfEducation.LevelofEducation);
+                    break;
+            }
+        }
     }
 }

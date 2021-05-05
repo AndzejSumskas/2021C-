@@ -4,12 +4,11 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Learning_App</RootNamespace>
-    <StartupObject>Learning_App.HomeWork13.HomeWork13</StartupObject>
+    <StartupObject>Learning_App.Lesson15.Lesson15</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Lesson10\" />
-    <Folder Include="Lesson15\ErrorHandling\" />
   </ItemGroup>
 
 </Project>

@@ -14,6 +14,12 @@ namespace Learning_App.Lesson15
 
         public string PostCode;
 
-
+        public Address(string addressName, int houseNr, int flatNr, string postCode)
+        {
+            AddressName = addressName;
+            HouseNr = houseNr;
+            FlatNr = flatNr;
+            PostCode = postCode;
+        }
     }
 }
