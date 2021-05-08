@@ -8,35 +8,33 @@ namespace Learning_App.GameSample.Game
 {
     class Frame : GuiObject
     {
-        private char renderChar;
+        public char RenderChar { get; set; }
 
         public Frame(int x, int y, int width, int height, char renderChar) : base(x, y, width, height)
         {
-            this.renderChar = renderChar;
+            RenderChar = renderChar;
         }
 
-
-        public void Render()
+        override public void Render()
         {
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < Height; i++)
             {
                 Console.SetCursorPosition(X, Y + i);
-                if (i == 0 || i == height - 1)
+                if (i == 0 || i == Height - 1)
                 {
-                    for (int j = 0; j < width; j++)
+                    for (int j = 0; j < Width; j++)
                     {
-                        Console.Write(renderChar);
+                        Console.Write(RenderChar);
                     }
                 }
                 else
                 {
-                    Console.Write(renderChar);
-                    for (int j = 0; j < width - 2; j++)
+                    Console.Write(RenderChar);
+                    for (int j = 0; j < Width - 2; j++)
                     {
                         Console.Write(' ');
                     }
-
-                    Console.Write(renderChar);
+                    Console.Write(RenderChar);
                 }
             }
         }

@@ -12,16 +12,16 @@ namespace Learning_App.GameSample.Game
         protected int Y;
         protected string Name;
 
-        public Unit(int x, int y, string name)
+        public Unit(string name, int x, int y)
         {
+            Name = name;
             X = x;
             Y = y;
-            Name = name;
         }
 
         public void PrintInfo()
         {
-            Console.WriteLine($"Unit {Name} is at: X = {X}, Y = {Y}");
+            Console.WriteLine($"Unit : {Name} {X}*{Y}");
         }
     }
 }
