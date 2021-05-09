@@ -10,6 +10,7 @@ namespace Learning_App.GameSample.Game
     class Enemy : Unit
     {
         private int id;
+        private const string shapeOfEnemy = "(:)";
        
         public Enemy(int id, string name, int x, int y) : base(name, x, y)
         {

@@ -64,6 +64,16 @@ namespace Learning_App.GameSample.Game
             return null;
         }
 
+        public Hero GetHero()
+        {
+            return hero;
+        }
+
+        public string GetHeroShape()
+        {
+            return GetHero().GetHeroShape();
+        }
+
         public void MoveAllEnemiesDown()
         {
             foreach (var enemy in enemies)

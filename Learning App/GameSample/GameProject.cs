@@ -11,24 +11,22 @@ namespace Learning_App.GameSample
     {
         static void Main()
         {
-            //GameController gameController = new GameController();
-            //gameController.StartGame();
-
-            //Console.CursorVisible = false;
-
             MenuWindow gameWindow = new MenuWindow();
-           
 
-            CreditWindow creditWindow = new CreditWindow();
-           
+             CreditWindow creditWindow = new CreditWindow();
 
             GuiController guiController = new GuiController(gameWindow, creditWindow);
 
-           guiController.ShowMenu();
-           guiController.MoveCursoPosition();
+            guiController.ShowMenu();
+            guiController.MoveCursoPosition();
 
-            
+            //GameWindow gw = new GameWindow();
+           //gw.Render();
 
+            //guiController.StartGame();
+            //GameController gameController = new GameController();
+
+            //gameController.StartGame();
 
             Console.ReadKey();
         }

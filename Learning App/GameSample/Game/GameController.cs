@@ -11,8 +11,19 @@ namespace Learning_App.GameSample.Game
     {
         public void StartGame()
         {
-            GameScreen gameScreen = new GameScreen(200, 40);
+            GameScreen gameScreen = new GameScreen(120, 30);
             gameScreen.SetHero(new Hero("Rand al'Thor", 5, 5));
+
+            Hero hero = gameScreen.GetHero();
+
+            hero.MovementOfHero();
+           
+
+           
+
+
+            
+
 
             int uniqueId = 0;
             Random rnd = new Random();
@@ -22,14 +33,14 @@ namespace Learning_App.GameSample.Game
                 uniqueId++;
             }
 
-            gameScreen.Render();
+            //gameScreen.Render();
 
-            gameScreen.MoveHeroLeft();
-            gameScreen.MoveAllEnemiesDown();
+            //gameScreen.MoveHeroLeft();
+            //gameScreen.MoveAllEnemiesDown();
 
-            gameScreen.GetEnemyById(2).MoveDown();
+            //gameScreen.GetEnemyById(2).MoveDown();
 
-            gameScreen.Render();
+            //gameScreen.Render();
         }
     }
 }

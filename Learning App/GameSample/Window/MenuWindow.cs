@@ -17,7 +17,7 @@ namespace Learning_App.GameSample.Game
 
         public MenuWindow() : base(0, 0, 120, 30, "Game menu!", '%')
         {
-            titleTextBlock = new TextBlock(10, 5, 100, new List<string> { "Super duper zaidimas", "Vardas Pavardaitis kuryba!", "Made in Vilnius Coding School!" });
+            titleTextBlock = new TextBlock(10, 5, 100, new List<string> { "Super duper zaidimas", "Herojus gali vakstineti visomis kriptimis remeliuose!", "Made in Vilnius Coding School!" });
 
             buttonList.Add(new Button(20, 13, 18, 5, "Start"));
             buttonList.Add(new Button(50, 13, 18, 5, "Credits"));
@@ -37,8 +37,6 @@ namespace Learning_App.GameSample.Game
             {
                 buttonList[i].Render();
             }
-           
-            Console.SetCursorPosition(0, 0);
         }
 
         public Button GetButton(int numberOfButton)

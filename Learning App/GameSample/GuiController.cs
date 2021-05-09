@@ -11,8 +11,9 @@ namespace Learning_App.GameSample
     {
         private CreditWindow creditWindow = new CreditWindow();
         private MenuWindow menuWindow = new MenuWindow();
+        private GameWindow gameWindow = new GameWindow();
 
-        private GameController gameController;
+        private GameController gameController = new GameController();
 
         public GuiController(MenuWindow menuWindow, CreditWindow creditWindo )
         {
@@ -73,6 +74,7 @@ namespace Learning_App.GameSample
                     menuWindow.GetButton(1).IsActive = true;
                     menuWindow.GetButton(2).IsActive = true;
                 }
+       
                 Console.SetCursorPosition(cursorPositionX, cursorPositionY);
 
             } while (moveCursor);
@@ -88,7 +90,8 @@ namespace Learning_App.GameSample
 
             if (cursorPositionX >= buttonStart.X && cursorPositionX <= buttonStart.X + buttonStart.Width && cursorPositionY >= buttonStart.Y && cursorPositionY <= buttonStart.Y + buttonStart.Height && buttonStart.IsActive == true)
             {
-
+                
+               gameController.StartGame();
             }
             else if (cursorPositionX >= buttonCredits.X && cursorPositionX <= buttonCredits.X + buttonCredits.Width && cursorPositionY >= buttonCredits.Y && cursorPositionY <= buttonCredits.Y + buttonCredits.Height && buttonCredits.IsActive == true)
             {
@@ -110,13 +113,15 @@ namespace Learning_App.GameSample
                 buttonCredits.IsActive = true;
                 buttonQuit.IsActive = true;
                 buttonStart.IsActive = true;
-            }
-            
+            }     
         }
 
-        public void StartGame()
+        public void MoveHeroPosition()
         {
-            gameController.StartGame();
+            Console.CursorVisible = false;
+
         }
+
+        
     }
 }
