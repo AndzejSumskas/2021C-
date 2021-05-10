@@ -16,6 +16,11 @@ namespace Learning_App.Lesson15
 
         static void Main()
         {
+          
+        }
+
+        public void MyExceptions()
+        {
             //Error exception ismetimas!!!
 
             //ErrorTest errorTest = new ErrorTest();
@@ -36,7 +41,7 @@ namespace Learning_App.Lesson15
             {
                 Console.WriteLine("Blogai naudojamas masyvas!");
             }
-            catch(MySuperException myException)
+            catch (MySuperException myException)
             {
                 Console.WriteLine("Something go wrong!!!");
                 Console.WriteLine(myException.Message);

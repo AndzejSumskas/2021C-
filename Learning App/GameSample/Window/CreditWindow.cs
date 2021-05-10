@@ -29,7 +29,6 @@ namespace Learning_App.GameSample.Game
                 creditData.Add("Vardas Vardaitis");
                 creditData.Add("");
 
-
                 creditTextBlock = new TextBlock(28 + 1, 10 + 1, 60 - 1, creditData);
 
                 backButton = new Button(28 + 20, 10 + 14, 18, 3, "Back");
