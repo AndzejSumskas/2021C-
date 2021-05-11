@@ -19,19 +19,29 @@ namespace Learning_App.HomeWork16
 
         internal void PrintItems()
         {
-            Console.WriteLine("Items in the truck:");
+            Console.WriteLine("*****************************");
+            Console.WriteLine("Truck inventory:");
             foreach (var item in truckItems)
             {
                 Console.WriteLine(item.GetName());
             }
+            Console.WriteLine("*****************************");
         }
 
         public StoreItem GetItems()
         {
             StoreItem stI=  truckItems.First();
             truckItems.Remove(truckItems.First());
-            return stI;
-            
+            return stI;   
         }
+
+        public HashSet<StoreItem> GetAllTruckItems()
+
+        {
+            return truckItems;
+        }
+
+
+
     }
 }

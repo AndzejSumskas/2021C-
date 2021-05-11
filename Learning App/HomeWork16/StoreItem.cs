@@ -6,7 +6,7 @@ namespace Learning_App.HomeWork16
     {
         string name { get; set; }
 
-        public Stack<StoreItem> storeItems = new Stack<StoreItem>();
+       
 
         public StoreItem(string name)
         {
@@ -17,5 +17,7 @@ namespace Learning_App.HomeWork16
         {
             return name;
         }
+
+        
     }
 }

@@ -8,21 +8,34 @@ namespace Learning_App.HomeWork16
 {
     class Store
     {
-        private  HashSet<StoreItem> storeItems = new HashSet<StoreItem>();
+        public  HashSet<StoreItem> storeItemsHashSet = new HashSet<StoreItem>();
+
+        public Stack<StoreItem> storeItems = new Stack<StoreItem>();
 
         internal void LoadStoreItems(StoreItem storeItem)
         {
-            storeItems.Add(storeItem);
+            storeItemsHashSet.Add(storeItem);
         }
 
         public void PrintInventory()
         {
             Console.WriteLine("*****************************");
             Console.WriteLine("Store inventory:");
-            foreach (var item in storeItems)
+            foreach (var item in storeItemsHashSet)
             {
                 Console.WriteLine(item.GetName());
             }
+            Console.WriteLine("*****************************");
+        }
+
+        public HashSet<StoreItem> GetAllStoreItems()
+        {
+            return storeItemsHashSet;
+        }
+
+        public void AddStoreItemToStack(StoreItem item)
+        {
+            storeItems.Push(item);
         }
     }
 }
