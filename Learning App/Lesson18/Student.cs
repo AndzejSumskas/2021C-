@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Learning_App.Lesson18
 {
-    class Student
+    class Student : IComparable<Student>
     {
         public int Id { get; set; }
 
@@ -29,6 +29,11 @@ namespace Learning_App.Lesson18
 
         public Student()
         {
+        }     
+
+        public int CompareTo(Student other)
+        {
+            return this.Age - other.Age;
         }
     }
 }
