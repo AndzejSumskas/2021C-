@@ -77,6 +77,8 @@ namespace Learning_App.Lesson18
 
             List<Student> studentCanDrink = students.FindAll(student => student.Age > 20);
 
+            List<Student> studenArrayWithA = students.FindAll(s => s.Name[0] =='P');
+
 
             foreach (var item in studentCanDrink)
             {

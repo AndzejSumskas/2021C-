@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Learning_App.Lesson17.Delegate
 {
-    delegate int DoOperation(int m1, int m2);
+    public delegate int DoOperation(int m1, int m2);
 
     class TestDelegate
     {
-        public void DoStuff()
-        {
-            Console.WriteLine();
-        }
+        DoOperation doOperation0 = new DoOperation(MyMultiply);
+
+        
 
         internal static int MyMultiply(int m1, int m2)
         {

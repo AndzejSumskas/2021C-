@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Learning_App.Lesson17.Delegate;
 using Learning_App.Lesson17.Dictionary;
+using Learning_App.Lesson17.EventHomeWork;
 using Learning_App.Lesson17.EventTask;
 using Learning_App.Lesson17.LessonTasks;
 
@@ -18,7 +19,26 @@ namespace Learning_App.Lesson17
 
             Sender sender = new Sender();
 
-           // mybank.OnAnyTransavtion += sender.Ha
+            // mybank.OnAnyTransavtion += sender.Ha
+
+
+
+            //MyDelegateTask();
+
+            ProcessBusinessLogic pBL = new ProcessBusinessLogic();
+            pBL.EwentWorkInHome();
+        }
+
+        public void MyDelegateTask()
+        {
+            DoOperation operationSum = new DoOperation(MyMultiply);
+            Console.WriteLine(operationSum(2, 6));
+            operationSum += MySum;
+            Console.WriteLine(operationSum(9, 8));
+
+            operationSum -= MySum;
+            Console.WriteLine(operationSum(9, 6));
+
         }
 
         public void DoStuff()
