@@ -28,7 +28,7 @@ namespace Learning_App.BigHomeWork4.Units
             diceList.Add(dice);
         }
 
-        internal string GetName()
+        public string GetName()
         {
             return name;
         }

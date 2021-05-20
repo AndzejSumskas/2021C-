@@ -1,4 +1,5 @@
 ﻿using Learning_App.BigHomeWork4.Constants;
+using Learning_App.BigHomeWork4.Game;
 using Learning_App.BigHomeWork4.Gui;
 using System;
 using System.Collections.Generic;
@@ -16,19 +17,15 @@ namespace Learning_App.BigHomeWork4.Window
 
         private int activeButtonId = 0;
 
-        private Dice6 dide6 = new Dice6();
-
+        GameController gameController = new GameController(); 
 
         public GameOverWindow() : base(30, 0, 60, 30, "Game Over!", '%')
         {
-            titleTextBlock = new TextBlock(10, 2, 100, new List<string> { "How many dices you want to roll?" });
+            titleTextBlock = new TextBlock(10, 2, 100, new List<string> { $"The winner is: {NameOfWinner()}" });
 
-            buttons.Add(new Button(Dice6.Dice1, 50, 4, 20, 3, "1 Dice"));
-            buttons.Add(new Button(Dice6.Dice2, 50, 8, 20, 3, "2 Dice"));
-            buttons.Add(new Button(Dice6.Dice3, 50, 12, 20, 3, "3 Dice"));
-            buttons.Add(new Button(Dice6.Dice4, 50, 16, 20, 3, "4 Dice"));
-            buttons.Add(new Button(Dice6.Dice5, 50, 20, 20, 3, "5 Dice"));
-            buttons.Add(new Button(Dice6.Dice6, 50, 24, 20, 3, "6 Dice"));
+            buttons.Add(new Button(ButtonGameOver.Replay, 50, 10, 20, 3, "R - Replay"));
+            buttons.Add(new Button(ButtonGameOver.Menu, 50, 15, 20, 3, "M - Menu"));
+            buttons.Add(new Button(ButtonGameOver.Quit, 50, 20, 20, 3, "Q - Quit"));
 
             buttons[activeButtonId].IsActive = true;
         }
@@ -42,6 +39,39 @@ namespace Learning_App.BigHomeWork4.Window
             {
                 buttons[i].Render();
             }
+        }
+
+        public void GoToUpperItem()
+        {
+            buttons[activeButtonId].IsActive = false;
+            activeButtonId--;
+            if (activeButtonId < 0)
+            {
+                activeButtonId = (int)ButtonGameOver.Quit;
+            }
+            buttons[activeButtonId].IsActive = true;
+        }
+
+        public void GoToBelowItem()
+        {
+            buttons[activeButtonId].IsActive = false;
+            activeButtonId++;
+            if (activeButtonId > (int)ButtonGameOver.Quit)
+            {
+                activeButtonId = (int)ButtonGameOver.Replay;
+            }
+            buttons[activeButtonId].IsActive = true;
+        }
+
+        internal ButtonGameOver GetActiveButtonType()
+        {
+            return buttons[activeButtonId].TypeGO;
+        }
+
+        public string NameOfWinner()
+        {
+            string name = gameController.GetWinner().GetName();
+            return name;
         }
     }
 }

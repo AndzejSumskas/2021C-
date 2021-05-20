@@ -16,14 +16,16 @@ namespace Learning_App.BigHomeWork4.Gui
 
         private TextLine textLine;
 
-        private const char activeChar = '#';
-        private const char notActiveChar = '+';
+        private const char activeChar = '*';
+        private const char notActiveChar = '#';
 
-        public ButtonType Type { get;}
+        public ButtonType Type { get; }
 
         public ButtonPlayersCount TypeP { get; }
 
         public Dice6 TypeD { get; }
+
+        public ButtonGameOver TypeGO{get;}
 
         public Button(ButtonType type, int x, int y, int width, int height, string label) : base(x, y, width, height)
         {
@@ -46,6 +48,14 @@ namespace Learning_App.BigHomeWork4.Gui
             activateFrame = new Frame(x, y, width, height, notActiveChar);
             textLine = new TextLine(x + 1, y + height / 2, width, label);
             TypeD = type;
+        }
+
+        public Button(ButtonGameOver type, int x, int y, int width, int height, string label) : base(x, y, width, height)
+        {
+            notActiveFrame = new Frame(x, y, width, height, activeChar);
+            activateFrame = new Frame(x, y, width, height, notActiveChar);
+            textLine = new TextLine(x + 1, y + height / 2, width, label);
+            TypeGO = type;
         }
 
         public bool IsActive { get; set; }

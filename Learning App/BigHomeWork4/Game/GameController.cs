@@ -1,4 +1,5 @@
-﻿using Learning_App.BigHomeWork4.Units;
+﻿using Learning_App.BigHomeWork4.Gui;
+using Learning_App.BigHomeWork4.Units;
 using Learning_App.BigHomeWork4.Window;
 using System;
 using System.Collections.Generic;
@@ -16,34 +17,35 @@ namespace Learning_App.BigHomeWork4.Game
 
         private IList<Player> players = new List<Player>();
 
-        private IList<Player> playersTemp = new List<Player>();
-
-        public Player winner;
+        private Player winner = new Player("Zero", new List<Dice>());
 
         private Random rnd = new Random();
+
+        public List<string> actions = new List<string>();
         
+        public Player GetWinner()
+        {
+            return winner;
+        }
 
         public void StartGame()
         {
-            GameScreen gameScreen = new GameScreen(200, 40);
-
             int diceLenght = diceSelectionWindow.GetItemId();
 
             int numberOfPlayers = numberOfPlayersWindow.GetItemId();
-
 
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 players.Add(new Player($"Player{i+1}", new List<Dice>()));
                 for (int j = 0; j < diceLenght; j++)
                 {
-                    players[i].AddDiceToDiceList(new Dice(rnd.Next(1,6)));
-                   
+                    players[i].AddDiceToDiceList(new Dice(rnd.Next(1,6)));    
                 }      
             }
             Render();
             Winer();
-
+            TextBlock textBlock = new TextBlock(10, 2, 100, actions);
+            textBlock.Render();
         }
 
         private List<int> sumOfDices = new List<int>();
@@ -70,7 +72,7 @@ namespace Learning_App.BigHomeWork4.Game
                     {
                         maxValue = item;
                         numberOfMaxValueNumbers = 1;
-                        Console.WriteLine($"{item} = max value. Numbers of maxValus {numberOfMaxValueNumbers}");
+                        actions.Add($"{item} = max value. Numbers of maxValus {numberOfMaxValueNumbers}");
                     }
                     else if (item == maxValue)
                     {
@@ -88,8 +90,7 @@ namespace Learning_App.BigHomeWork4.Game
                         if (sumOfDices[i] == maxValue)
                         {
                             winner = players[i];
-
-                            Console.WriteLine($"The Winner is {winner.GetName()}. Dice sum value: {maxValue}");
+                            actions.Add($"The Winner is {winner.GetName()}. Dice sum value: {maxValue}");
                             isTwoOrMoreMaxNumbers = false;
                         }
                     }
@@ -99,9 +100,9 @@ namespace Learning_App.BigHomeWork4.Game
 
         private void Rematch()
         {
-            Console.WriteLine($"{numberOfMaxValueNumbers} players has the highest sum of dices..." +
-                            $"We will have rematch between this players!!!");
-            Console.WriteLine("*************************************");
+            actions.Add($"{numberOfMaxValueNumbers} players has the highest sum of dices...");
+            actions.Add($"We will have rematch between this players!!!");
+           
             for (int i = 0; i < sumOfDices.Count; i++)
             {
                 if (sumOfDices[i] == maxValue)
@@ -116,14 +117,14 @@ namespace Learning_App.BigHomeWork4.Game
                     {
                         sumOfDiceInt += dice.GetDiceValue();
                     }
-                    //sumOfDices.Add(sumOfDiceInt);
-                    sumOfDiceInt = 0;                    
-                    Console.Write($"{players[i].GetName()}: ");
+                    sumOfDiceInt = 0;
+                    string act = $"{players[i].GetName()}: ";
+                    
                     foreach (var dice in players[i].GetDiceList())
                     {
                         int nr = dice.GetDiceValue();
                         //System.Threading.Thread.Sleep(200);
-                        Console.Write($"[{nr}] ");
+                        act += $"[{nr}] ";
                     }
                     Console.WriteLine();
                 }
@@ -140,19 +141,23 @@ namespace Learning_App.BigHomeWork4.Game
 
         public void Render()
         {
-            Console.WriteLine($"Players will have {players[0].GetDiceList().Count} dice :");
+            actions.Add($"Players will have {players[0].GetDiceList().Count} dice :");
             foreach (var player in players)
             {
                 //System.Threading.Thread.Sleep(200);
-                Console.Write($"{player.GetName()}: ");
+                string act = $"{player.GetName()}: ";
+               
                 foreach (var dice in player.GetDiceList())
                 {
                     int nr = dice.GetDiceValue();
                     //System.Threading.Thread.Sleep(200);
-                    Console.Write($"[{nr}] ");
+                    act += $"[{nr}] ";                 
                 }
+                actions.Add(act);
                 Console.WriteLine();
+                act = "";
             }
         }
+
     }
 }

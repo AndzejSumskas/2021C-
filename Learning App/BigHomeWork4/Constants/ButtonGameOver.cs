@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Learning_App.BigHomeWork4.Constants
 {
-    enum WindowType
+    enum ButtonGameOver
     {
-        None,
+        Replay,
         Menu,
-        PlayesCount,
-        Dice, 
-        Game,
-        GameOver
+        Quit
     }
 }

@@ -12,21 +12,22 @@ namespace Learning_App.BigHomeWork4
     {
         static void Main()
         {
-            //GuiManager guiManager = new GuiManager();
-            //guiManager.StartAplication();
-
-            //DiceSelectionWindow dsw = new DiceSelectionWindow();
-
-            //dsw.Render();
-
             GameController gameController = new GameController();
+            //gameController.StartGame();
 
-            GameOverWindow gameOverWindow = new GameOverWindow();
+            
 
-            gameController.StartGame();
+            //GameOverWindow gameOverWindow = new GameOverWindow();
+
+            GuiManager me = new GuiManager();
+
             //gameOverWindow.Render();
+            //me.GameOverMenu();
+
+            me.StartAplication();
 
             Console.ReadKey();
+           
         }
     }
 }

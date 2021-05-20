@@ -16,8 +16,6 @@ namespace Learning_App.BigHomeWork4.Window
 
         private int activeButtonId = 0;
 
-        private Dice6 dide6 = new Dice6();
-
 
         public DiceSelectionWindow() : base(30, 0, 60, 30, "Menu window!", '%')
         {
@@ -44,7 +42,7 @@ namespace Learning_App.BigHomeWork4.Window
             }
         }
 
-        internal void GoToUpperItem()
+        public void GoToUpperItem()
         {
             buttons[activeButtonId].IsActive = false;
             activeButtonId--;
@@ -55,7 +53,7 @@ namespace Learning_App.BigHomeWork4.Window
             buttons[activeButtonId].IsActive = true;
         }
 
-        internal void GoToBelowItem()
+        public void GoToBelowItem()
         {
             buttons[activeButtonId].IsActive = false;
             activeButtonId++;

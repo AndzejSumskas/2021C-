@@ -1,4 +1,5 @@
 ﻿using Learning_App.BigHomeWork4.Constants;
+using Learning_App.BigHomeWork4.Game;
 using Learning_App.BigHomeWork4.Window;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,12 @@ namespace Learning_App.BigHomeWork4
         private NumberOfPlayersWindow numberOfPlayersWindow = new NumberOfPlayersWindow();
 
         private DiceSelectionWindow diceSelectionWindow = new DiceSelectionWindow();
+
+        private GameOverWindow gameOverWindow = new GameOverWindow();
+
+        private GameWindow gameWindow = new GameWindow();
+
+        private GameController gameController = new GameController();
 
         private bool isApplicationRunning = true;
 
@@ -39,6 +46,7 @@ namespace Learning_App.BigHomeWork4
         {
             currentActiveWindow = WindowType.Menu;
             menuWindow.Render();
+        
         }
 
         private void StartHandlingInput()
@@ -54,9 +62,22 @@ namespace Learning_App.BigHomeWork4
                     {
                         case WindowType.None:
                             break;
+                        case WindowType.Game:
+                            gameWindow.Render();
+                            gameController.StartGame();
+                            System.Threading.Thread.Sleep(4000);
+                            currentActiveWindow = WindowType.GameOver;
+                            gameOverWindow.Render();
+                            break;
+                        case WindowType.GameOver:
+                            gameWindow.Render();
+                            GameOverMenu();
+                            break;
                         case WindowType.PlayesCount:
                             numberOfPlayersWindow.Render();
                             SelectNumberOfPlayers();
+                            currentActiveWindow = WindowType.Dice;
+                            diceSelectionWindow.Render();
                             break;
                         case WindowType.Menu:
                             switch (key.Key)
@@ -98,6 +119,7 @@ namespace Learning_App.BigHomeWork4
                         case WindowType.Dice:
                             diceSelectionWindow.Render();
                             SelectNumberOfDice();
+                            currentActiveWindow = WindowType.Game;
                             break;
                         default:
                             break;
@@ -106,6 +128,47 @@ namespace Learning_App.BigHomeWork4
                 }
             } while (isApplicationRunning);
         }
+
+        public void GameOverMenu()
+        {
+            windowsIsRunning = true;
+            while (windowsIsRunning)
+            {
+                while (Console.KeyAvailable)
+                {
+                    var key = Console.ReadKey(true);
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.UpArrow:
+                            gameOverWindow.GoToUpperItem();
+                            gameOverWindow.Render();
+                            break;
+                        case ConsoleKey.DownArrow:
+                            gameOverWindow.GoToBelowItem();
+                            gameOverWindow.Render();
+                            break;
+                        case ConsoleKey.Enter:
+                            windowsIsRunning = false;
+                            switch (gameOverWindow.GetActiveButtonType()) 
+                            {
+                                case ButtonGameOver.Replay:
+                                    currentActiveWindow = WindowType.Game;
+                                    gameWindow.Render();
+                                    break;
+                                case ButtonGameOver.Menu:
+                                    currentActiveWindow = WindowType.Menu;
+                                    menuWindow.Render();
+                                    break;
+                                case ButtonGameOver.Quit:
+                                    isApplicationRunning = false;
+                                    break;
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+    
 
         public void SelectNumberOfDice()
         {
