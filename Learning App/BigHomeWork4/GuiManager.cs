@@ -178,18 +178,26 @@ namespace Learning_App.BigHomeWork4
                     var key = Console.ReadKey(true);
                     switch (key.Key)
                     {
-                        case ConsoleKey.UpArrow:
-                            diceSelectionWindow.GoToUpperItem();
-                            diceSelectionWindow.Render();
-                            break;
-                        case ConsoleKey.DownArrow:
-                            diceSelectionWindow.GoToBelowItem();
-                            diceSelectionWindow.Render();
-                            break;
-                        case ConsoleKey.Enter:
-                            currentActiveWindow = WindowType.Dice;
-                            windowsIsRunning = false;
-                            break;
+                    case ConsoleKey.UpArrow:
+                        diceSelectionWindow.GoToUpperItem();
+                        diceSelectionWindow.Render();
+                        break;
+                    case ConsoleKey.DownArrow:
+                        diceSelectionWindow.GoToBelowItem();
+                        diceSelectionWindow.Render();
+                        break;
+                    case ConsoleKey.Enter:
+                        currentActiveWindow = WindowType.Dice;
+                        windowsIsRunning = false;
+                        break;
+                    case ConsoleKey.OemPlus:
+                        diceSelectionWindow.GoToUpperItem();
+                        diceSelectionWindow.Render();
+                        break;
+                    case ConsoleKey.OemMinus:
+                        diceSelectionWindow.GoToBelowItem();
+                        diceSelectionWindow.Render();
+                        break;
                     }
                 //}
             }
