@@ -22,7 +22,7 @@ namespace Learning_App.BigHomeWork4.Gui
         {
             for (int i = 0; i < textBlocks.Count; i++)
             {
-                System.Threading.Thread.Sleep(200);
+                //System.Threading.Thread.Sleep(200);
                 textBlocks[i].Render();
             }
         }

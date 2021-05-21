@@ -15,7 +15,7 @@ namespace Learning_App.BigHomeWork4.Window
 
         private List<Button> buttons = new List<Button>();
 
-        private int activeButtonId = 0;
+        public int activeButtonIdPlayers = 0;
 
 
         public NumberOfPlayersWindow() : base(28, 10, 60, 19, "Number of Playes", '@')
@@ -27,12 +27,13 @@ namespace Learning_App.BigHomeWork4.Window
             buttons.Add(new Button(ButtonPlayersCount.P6, 43, 23, 15, 5, "P6"));
             buttons.Add(new Button(ButtonPlayersCount.P7, 58, 23, 15, 5, "P7"));
 
-            buttons[activeButtonId].IsActive = true;
+            buttons[activeButtonIdPlayers].IsActive = true;
         }
 
         internal int GetItemId()
         {
-            return activeButtonId += 2;
+            int number = activeButtonIdPlayers + 2;
+            return number;
         }
 
         public override void Render()
@@ -47,52 +48,53 @@ namespace Learning_App.BigHomeWork4.Window
 
         public ButtonPlayersCount GetActiveButtonType()
         {
-            return buttons[activeButtonId].TypeP;
+            return buttons[activeButtonIdPlayers].TypeP;
         }
         
         internal void GoToPreviousItem()
         {
-            buttons[activeButtonId].IsActive = false;
-            activeButtonId--;
-            if (activeButtonId % 2 != 0) 
+
+            buttons[activeButtonIdPlayers].IsActive = false;
+            activeButtonIdPlayers--;
+            if (activeButtonIdPlayers % 2 != 0) 
             {
-                activeButtonId += 2;
+                activeButtonIdPlayers += 2;
             }
-            buttons[activeButtonId].IsActive = true;
+            buttons[activeButtonIdPlayers].IsActive = true;
         }
         
         internal void GoToNextItem()
         {
-            buttons[activeButtonId].IsActive = false;
-            activeButtonId++;
-            if(activeButtonId % 2 == 0)
+            buttons[activeButtonIdPlayers].IsActive = false;
+            activeButtonIdPlayers++;
+            if(activeButtonIdPlayers % 2 == 0)
             {
-                activeButtonId -= 2;
+                activeButtonIdPlayers -= 2;
             }
-            buttons[activeButtonId].IsActive = true;
+            buttons[activeButtonIdPlayers].IsActive = true;
         }
-        //Blogai
+
         internal void GoToBelowItem()
         {
-            buttons[activeButtonId].IsActive = false;
-            activeButtonId += 2;
-            if (activeButtonId >= buttons.Count)
+            buttons[activeButtonIdPlayers].IsActive = false;
+            activeButtonIdPlayers += 2;
+            if (activeButtonIdPlayers >= buttons.Count)
             {
-                activeButtonId -=6;
+                activeButtonIdPlayers -=6;
             }
-            buttons[activeButtonId].IsActive = true;
+            buttons[activeButtonIdPlayers].IsActive = true;
         }
-        //Blogai
+       
         internal void GoToUpperItem()
         {
-            buttons[activeButtonId].IsActive = false;
-            activeButtonId-=2;
-            if (activeButtonId < 0)
+            buttons[activeButtonIdPlayers].IsActive = false;
+            activeButtonIdPlayers-=2;
+            if (activeButtonIdPlayers < 0)
             {
-                activeButtonId += 6;
+                activeButtonIdPlayers += 6;
             }
-            buttons[activeButtonId].IsActive = true;
+            buttons[activeButtonIdPlayers].IsActive = true;
         }
-        
+       
     }
 }

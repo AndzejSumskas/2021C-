@@ -12,21 +12,8 @@ namespace Learning_App.BigHomeWork4
     {
         static void Main()
         {
-            GameController gameController = new GameController();
-            //gameController.StartGame();
-
-            
-
-            //GameOverWindow gameOverWindow = new GameOverWindow();
-
             GuiManager me = new GuiManager();
-
-            //gameOverWindow.Render();
-            //me.GameOverMenu();
-
             me.StartAplication();
-
-            Console.ReadKey();
            
         }
     }

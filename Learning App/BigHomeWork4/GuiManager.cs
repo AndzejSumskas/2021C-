@@ -37,6 +37,7 @@ namespace Learning_App.BigHomeWork4
             Console.CursorVisible = false;
             Console.Clear();
             ShowMenu();
+            
             StartHandlingInput();
         }
 
@@ -52,35 +53,32 @@ namespace Learning_App.BigHomeWork4
         private void StartHandlingInput()
         {
             do
-            {
-                
-                while (Console.KeyAvailable)
-                {
-                    var key = Console.ReadKey(true);
-
-                    switch (currentActiveWindow)
+            {  
+                //while (Console.KeyAvailable)
+                //{                 
+                switch (currentActiveWindow)
                     {
                         case WindowType.None:
                             break;
                         case WindowType.Game:
                             gameWindow.Render();
                             gameController.StartGame();
-                            System.Threading.Thread.Sleep(4000);
                             currentActiveWindow = WindowType.GameOver;
-                            gameOverWindow.Render();
                             break;
                         case WindowType.GameOver:
-                            gameWindow.Render();
+                            gameOverWindow.Render();
                             GameOverMenu();
                             break;
                         case WindowType.PlayesCount:
                             numberOfPlayersWindow.Render();
                             SelectNumberOfPlayers();
                             currentActiveWindow = WindowType.Dice;
-                            diceSelectionWindow.Render();
+                        gameController.numberOfPlayers = numberOfPlayersWindow.GetItemId();
                             break;
                         case WindowType.Menu:
-                            switch (key.Key)
+                        menuWindow.Render();
+                        var key = Console.ReadKey(true);
+                        switch (key.Key)
                             {
                                 case ConsoleKey.LeftArrow:
                                     menuWindow.GoToPreviousItem();
@@ -90,12 +88,12 @@ namespace Learning_App.BigHomeWork4
                                     menuWindow.GoToNextItem();
                                     menuWindow.Render();
                                     break;
-                                case ConsoleKey.Enter:
-                                    switch(menuWindow.GetActiveButtonType())
+                                case ConsoleKey.Enter:                                 
+                                    switch (menuWindow.GetActiveButtonType())
                                     {
                                         case ButtonType.Game:
+                                            windowsIsRunning = true;
                                             currentActiveWindow = WindowType.PlayesCount;
-                                            numberOfPlayersWindow.Render();
                                             break;
                                         case ButtonType.Quit:
                                             isApplicationRunning = false;
@@ -106,8 +104,7 @@ namespace Learning_App.BigHomeWork4
                                     break;
                                 case ConsoleKey.P:
                                     currentActiveWindow = WindowType.PlayesCount;
-                                    numberOfPlayersWindow.Render();
-                                    //startgame
+                                    numberOfPlayersWindow.Render();                               
                                     break;
                                 case ConsoleKey.Q:
                                     isApplicationRunning = false;
@@ -120,12 +117,13 @@ namespace Learning_App.BigHomeWork4
                             diceSelectionWindow.Render();
                             SelectNumberOfDice();
                             currentActiveWindow = WindowType.Game;
-                            break;
+                        gameController.diceLenght = diceSelectionWindow.GetItemId();
+                        break;
                         default:
                             break;
                     }
                    
-                }
+                //}
             } while (isApplicationRunning);
         }
 
@@ -175,8 +173,8 @@ namespace Learning_App.BigHomeWork4
             windowsIsRunning = true;
             while (windowsIsRunning)
             {
-                while (Console.KeyAvailable)
-                {
+                //while (Console.KeyAvailable)
+                //{
                     var key = Console.ReadKey(true);
                     switch (key.Key)
                     {
@@ -191,19 +189,19 @@ namespace Learning_App.BigHomeWork4
                         case ConsoleKey.Enter:
                             currentActiveWindow = WindowType.Dice;
                             windowsIsRunning = false;
-                            diceSelectionWindow.Render();
                             break;
                     }
-                }
+                //}
             }
         }
 
         public void SelectNumberOfPlayers()
+        
         {
             while(windowsIsRunning)
             {
-                while (Console.KeyAvailable)
-                {
+                //while (Console.KeyAvailable)
+                //{
                     var key = Console.ReadKey(true);
                     switch (key.Key)
                     {
@@ -225,13 +223,12 @@ namespace Learning_App.BigHomeWork4
                             break;
                         case ConsoleKey.Enter:
                             currentActiveWindow = WindowType.Dice;
-                            diceSelectionWindow.Render();
                             windowsIsRunning = false;               
                             break;
                         default:
                             break;
                     }
-                }
+                //}
                 
             }
            

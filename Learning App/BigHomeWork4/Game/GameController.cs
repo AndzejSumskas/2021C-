@@ -22,18 +22,21 @@ namespace Learning_App.BigHomeWork4.Game
         private Random rnd = new Random();
 
         public List<string> actions = new List<string>();
-        
+
         public Player GetWinner()
         {
             return winner;
         }
 
+        public int diceLenght { get; set; }
+        public int numberOfPlayers{get;set;}
         public void StartGame()
         {
-            int diceLenght = diceSelectionWindow.GetItemId();
+            sumOfDices.Clear();
+            actions.Clear();
+            players.Clear();
 
-            int numberOfPlayers = numberOfPlayersWindow.GetItemId();
-
+            
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 players.Add(new Player($"Player{i+1}", new List<Dice>()));
@@ -43,9 +46,11 @@ namespace Learning_App.BigHomeWork4.Game
                 }      
             }
             Render();
+            isTwoOrMoreMaxNumbers = true;
             Winer();
             TextBlock textBlock = new TextBlock(10, 2, 100, actions);
             textBlock.Render();
+            Console.ReadKey();
         }
 
         private List<int> sumOfDices = new List<int>();
@@ -57,6 +62,7 @@ namespace Learning_App.BigHomeWork4.Game
         {
             while(isTwoOrMoreMaxNumbers)
             {
+                maxValue = 0;
                 foreach (var player in players)
                 {
                     foreach (var dice in player.GetDiceList())
@@ -77,6 +83,7 @@ namespace Learning_App.BigHomeWork4.Game
                     else if (item == maxValue)
                     {
                         numberOfMaxValueNumbers++;
+                        actions.Add($"{item} = max value. Numbers of maxValus {numberOfMaxValueNumbers}");
                     }
                 }
                 if (numberOfMaxValueNumbers > 1)
@@ -90,7 +97,9 @@ namespace Learning_App.BigHomeWork4.Game
                         if (sumOfDices[i] == maxValue)
                         {
                             winner = players[i];
+                            actions.Add("****************************************");
                             actions.Add($"The Winner is {winner.GetName()}. Dice sum value: {maxValue}");
+                            actions.Add("****************************************");
                             isTwoOrMoreMaxNumbers = false;
                         }
                     }
@@ -100,15 +109,17 @@ namespace Learning_App.BigHomeWork4.Game
 
         private void Rematch()
         {
+            actions.Add(" ");
             actions.Add($"{numberOfMaxValueNumbers} players has the highest sum of dices...");
             actions.Add($"We will have rematch between this players!!!");
+            actions.Add(" ");
            
             for (int i = 0; i < sumOfDices.Count; i++)
             {
                 if (sumOfDices[i] == maxValue)
                 {
                     players[i].GetDiceList().Clear();
-                    for (int j = 0; j < diceSelectionWindow.GetItemId(); j++)
+                    for (int j = 0; j < diceLenght; j++)
                     {
                         players[i].AddDiceToDiceList(new Dice(rnd.Next(1, 6)));
                     }
@@ -126,9 +137,8 @@ namespace Learning_App.BigHomeWork4.Game
                         //System.Threading.Thread.Sleep(200);
                         act += $"[{nr}] ";
                     }
-                    Console.WriteLine();
+                    actions.Add(act);
                 }
-               
                 else
                 {
                     players[i].GetDiceList().Clear();           
@@ -141,7 +151,7 @@ namespace Learning_App.BigHomeWork4.Game
 
         public void Render()
         {
-            actions.Add($"Players will have {players[0].GetDiceList().Count} dice :");
+            actions.Add($"Players will have {players[1].GetDiceList().Count} dice :");
             foreach (var player in players)
             {
                 //System.Threading.Thread.Sleep(200);
