@@ -4,10 +4,14 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Learning_App</RootNamespace>
-    <StartupObject>Learning_App.BigHomeWork4.ProgramBigHomeWork4</StartupObject>
+    <StartupObject>Learning_App.BigHomeWork4Task.Programe</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="FinalBigHomeWork\Game\" />
+    <Folder Include="FinalBigHomeWork\Gui\" />
+    <Folder Include="FinalBigHomeWork\Units\" />
+    <Folder Include="FinalBigHomeWork\Window\" />
     <Folder Include="Lesson10\" />
   </ItemGroup>
 

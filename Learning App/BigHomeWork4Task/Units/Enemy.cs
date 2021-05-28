@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Learning_App.BigHomeWork4Task.Units
+{
+    class Enemy : Unit
+    {
+        private int id;
+
+        public Enemy(int id, int x, int y, string name) : base(x, y, name)
+        {
+            this.id = id;
+        }
+
+        public void MoveDown()
+        {
+            Y++;
+        }
+
+        public void MoveUp()
+        {
+            Y--;
+        }
+
+        public int GetId()
+        {
+            return id;
+        }
+    }
+}
