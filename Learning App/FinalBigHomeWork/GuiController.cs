@@ -137,7 +137,7 @@ namespace Learning_App.FinalBigHomeWork
                         bullet.Render();
                     }
                 }
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(10);
 
 
             } while (applicationIsRunning);

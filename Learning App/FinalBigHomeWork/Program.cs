@@ -16,8 +16,7 @@ namespace Learning_App.FinalBigHomeWork
 
             guiController.StartAplication();
 
-
-
+            
 
 
 

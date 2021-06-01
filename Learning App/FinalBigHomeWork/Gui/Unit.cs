@@ -78,6 +78,10 @@ namespace Learning_App.FinalBigHomeWork.Gui
             else
             {
                 X += 2;
+                //if(true)
+                //{
+                //    X -= 2;
+                //}
             }
 
         }
