@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Learning_App.FinalBigHomeWork.Gui;
+using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,29 @@ namespace Learning_App.FinalBigHomeWork
     {
         static void Main()
         {
+            GuiController guiController = new GuiController();
 
+            guiController.StartAplication();
+
+
+
+
+
+
+
+            //Console.WriteLine("▒▒▒▒▒▒");
+            //Console.WriteLine("  ██==");
+            //Console.WriteLine("▒▒▒▒▒▒");
+
+            //Console.WriteLine();
+
+
+            //Console.WriteLine("▒▒¦¦▒▒");
+            //Console.WriteLine("▒▒██▒▒");
+            //Console.WriteLine("▒▒  ▒▒");
+
+
+            Console.ReadKey();
         }
     }
 }
