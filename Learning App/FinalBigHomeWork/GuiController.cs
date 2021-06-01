@@ -36,15 +36,6 @@ namespace Learning_App.FinalBigHomeWork
             player.Render();
             do
             {
-                if (bulletIsActive)
-                {
-                    bullet.ShotUp();
-                    if(bullet.shotIsActive == false)
-                    {
-                        bulletIsActive = false;
-                    }
-                }
-
                 while (Console.KeyAvailable)
                  {
                     
@@ -88,29 +79,66 @@ namespace Learning_App.FinalBigHomeWork
                             switch (tankDirection)
                             {                                
                                 case TankDirection.Up:
-                                    bullet.listOfBullets.Add(new Bullet(player.X + 2, player.Y - 1));
-                                    bullet.X = player.X + 2;
-                                    bullet.Y = player.Y - 1;
+                                    bullet.listOfBulletsShutUp.Add(new Bullet(player.X + 2, player.Y - 1));
                                     break;
                                 case TankDirection.Down:
+                                    bullet.listOfBulletsShutDown.Add(new Bullet(player.X + 2, player.Y + 3));
                                     break;
                                 case TankDirection.Left:
+                                    bullet.listOfBulletsShutLeft.Add(new Bullet(player.X - 1, player.Y + 1));
                                     break;
                                 case TankDirection.Right:
+                                    bullet.listOfBulletsShutRight.Add(new Bullet(player.X + 6, player.Y + 1));
                                     break;
                             }
                             bulletIsActive = true;
-                            bullet.Render();
+                            foreach (var bullet in bullet.listOfBulletsShutUp)
+                            {
+                                bullet.Render();
+                            }
+                            foreach (var bullet in bullet.listOfBulletsShutDown)
+                            {
+                                bullet.Render();
+                            }
+                            foreach (var bullet in bullet.listOfBulletsShutLeft)
+                            {
+                                bullet.Render();
+                            }
+                            foreach (var bullet in bullet.listOfBulletsShutRight)
+                            {
+                                bullet.Render();
+                            }
                             break;
                     }  
                 }
-                System.Threading.Thread.Sleep(50);
                 gameWindow.Render();
                 player.Render();
-                if(bulletIsActive)
+                if (bulletIsActive)
                 {
-                    bullet.Render();
+                    bullet.BulletsShots();
+                    if (bullet.shotIsActive == false)
+                    {
+                        bulletIsActive = false;
+                    }
+                    foreach (var bullet in bullet.listOfBulletsShutUp)
+                    {
+                        bullet.Render();
+                    }
+                    foreach (var bullet in bullet.listOfBulletsShutDown)
+                    {
+                        bullet.Render();
+                    }
+                    foreach (var bullet in bullet.listOfBulletsShutLeft)
+                    {
+                        bullet.Render();
+                    }
+                    foreach (var bullet in bullet.listOfBulletsShutRight)
+                    {
+                        bullet.Render();
+                    }
                 }
+                System.Threading.Thread.Sleep(50);
+
 
             } while (applicationIsRunning);
         }

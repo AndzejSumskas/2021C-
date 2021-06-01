@@ -9,7 +9,9 @@ namespace Learning_App.FinalBigHomeWork.Windows
 {
     class GameWindow : Window
     {
-        public GameWindow() : base(0, 0, 50, 30, "GameWindow", '▓')
+        private TextLine textLine;
+        
+        public GameWindow() : base(0, 0, 150, 50, "GameWindow", '▓')
         {
         }
     }

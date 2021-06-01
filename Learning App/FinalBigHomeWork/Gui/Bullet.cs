@@ -10,7 +10,11 @@ namespace Learning_App.FinalBigHomeWork.Gui
     class Bullet : GuiObject
     {
         GameWindow gameWindow = new GameWindow();
-        public List<Bullet> listOfBullets = new List<Bullet>();
+        public List<Bullet> listOfBulletsShutUp = new List<Bullet>();
+        public List<Bullet> listOfBulletsShutDown = new List<Bullet>();
+        public List<Bullet> listOfBulletsShutLeft = new List<Bullet>();
+        public List<Bullet> listOfBulletsShutRight = new List<Bullet>();
+
 
         public bool shotIsActive;
 
@@ -25,17 +29,131 @@ namespace Learning_App.FinalBigHomeWork.Gui
             Console.Write(bullet);
         }
 
-        internal void ShotUp()
+        internal void BulletsShots()
         {
-            shotIsActive = true;
-            if (Y <= gameWindow.Y + 1)
-            { 
-                shotIsActive = false; 
+            ShutUp();
+            ShutDown();
+            ShutLeft();
+            ShutRight();
+        }
+
+        private void ShutRight()
+        {
+            List<int> tempListOfNumbers = new List<int>();
+            for (int i = 0; i < listOfBulletsShutRight.Count; i++)
+            {
+                if (listOfBulletsShutRight[i].X >= gameWindow.X + gameWindow.Width -3)
+                {
+                    tempListOfNumbers.Add(i);
+                    shotIsActive = false;
+                }
+                else
+                {
+                    listOfBulletsShutRight[i].X+=6;
+                    if(listOfBulletsShutRight[i].X >= gameWindow.X + gameWindow.Width - 3)
+                    {
+                        listOfBulletsShutRight[i].X = gameWindow.X + gameWindow.Width - 3;
+                    }
+                    shotIsActive = true;
+                }
             }
 
-            else
+            var tempList = from nr in tempListOfNumbers
+                           orderby nr descending
+                           select nr;
+            foreach (var number in tempList)
             {
-                Y--;
+                listOfBulletsShutRight.RemoveAt(number);
+            }
+        }
+
+        private void ShutLeft()
+        {
+            List<int> tempListOfNumbers = new List<int>();
+            for (int i = 0; i < listOfBulletsShutLeft.Count; i++)
+            {
+                if (listOfBulletsShutLeft[i].X <= gameWindow.X + 2)
+                {
+                    tempListOfNumbers.Add(i);
+                    shotIsActive = false;
+                }
+                else
+                {
+                    listOfBulletsShutLeft[i].X-=6;
+                    if (listOfBulletsShutLeft[i].X <= gameWindow.X + 2)
+                    {
+                        listOfBulletsShutLeft[i].X = 2;
+                    }
+                    shotIsActive = true;
+                }
+            }
+
+            var tempList = from nr in tempListOfNumbers
+                           orderby nr descending
+                           select nr;
+            foreach (var number in tempList)
+            {
+                listOfBulletsShutLeft.RemoveAt(number);
+            }
+        }
+
+        private void ShutDown()
+        {
+            List<int> tempListOfNumbers = new List<int>();
+            for (int i = 0; i < listOfBulletsShutDown.Count; i++)
+            {
+                if (listOfBulletsShutDown[i].Y >= gameWindow.Y + gameWindow.Height -1)
+                {
+                    tempListOfNumbers.Add(i);
+                    shotIsActive = false;
+                }
+                else
+                {
+                    listOfBulletsShutDown[i].Y+=3;
+                    if (listOfBulletsShutDown[i].Y >= gameWindow.Y + gameWindow.Height - 1)
+                    {
+                        listOfBulletsShutDown[i].Y = gameWindow.Y + gameWindow.Height - 1;
+                    }
+                        shotIsActive = true;
+                }
+            }
+
+            var tempList = from nr in tempListOfNumbers
+                           orderby nr descending
+                           select nr;
+            foreach (var number in tempList)
+            {
+                listOfBulletsShutDown.RemoveAt(number);
+            }
+        }
+
+        private void ShutUp()
+        {
+            List<int> tempListOfNumbers = new List<int>();
+            for (int i = 0; i < listOfBulletsShutUp.Count; i++)
+            {
+                if (listOfBulletsShutUp[i].Y <= gameWindow.Y)
+                {
+                    tempListOfNumbers.Add(i);
+                    shotIsActive = false;
+                }
+                else
+                {
+                    listOfBulletsShutUp[i].Y-=3;
+                    if(listOfBulletsShutUp[i].Y <= gameWindow.Y)
+                    {
+                        listOfBulletsShutUp[i].Y = gameWindow.Y;
+                    }
+                    shotIsActive = true;
+                }
+            }
+
+            var tempList = from nr in tempListOfNumbers
+                           orderby nr descending
+                           select nr;
+            foreach (var number in tempList)
+            {
+                listOfBulletsShutUp.RemoveAt(number);
             }
         }
     }
