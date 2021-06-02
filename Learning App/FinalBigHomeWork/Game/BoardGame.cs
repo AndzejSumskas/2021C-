@@ -12,6 +12,12 @@ namespace Learning_App.FinalBigHomeWork.Units
     {
         private GameWindow gameWindow = new GameWindow();
         private int[,] boardGameArray = new int[30, 100];
+        private List<Bullet> explodedBulletsList = new List<Bullet>();
+
+        public void AddToexplodedBulletsList(Bullet bulet)
+        {
+            explodedBulletsList.Add(bulet);
+        }
 
         public void gameController()
         {
@@ -84,6 +90,75 @@ namespace Learning_App.FinalBigHomeWork.Units
             GameBoardFrame();
             OtherStructures();
             return boardGameArray;
+        }
+
+        //Make changes in game window
+        //private int explodeX;  ///aasdasdasdasasdasd
+        //private int explodeY; //dasdasdasdasdasdasdas
+
+        public void MakeChange()
+        {
+            int explodeX = 0;
+            int explodeY = 0;
+         
+
+            //Gauname isautus sviedinius kurie susprogo prie objektu
+            foreach (var bullet in explodedBulletsList)
+            {
+                //Gauname koordinates sprogimo
+                explodeX = bullet.X;
+                explodeY = bullet.Y;
+                //Gauname krypti, kuria sviedinys skriejo                
+                switch (bullet.GetName())
+                {
+                    case "ShutUp":
+                        break;
+                    case "ShutDown":
+                        break;
+                    case "ShutLeft":
+                        break;
+                    case "ShutRight":
+                        break;
+                    default:
+                        break;
+
+
+
+                }
+
+                //
+                for (int i = 0; i < gameWindow.textLines.Count; i++)
+                {
+                    if (explodeY == bullet.Y)
+                    {
+                        if (bullet.X >= explodeX && bullet.X <= explodeX + gameWindow.textLines[i].Width)
+                        {
+                            Console.WriteLine(456464554);
+                        }
+                    }
+                }
+                foreach (var line in gameWindow.textLines)
+                {
+                    if(bullet.Y == line.Y)
+                    {
+                        if (bullet.X >= line.X && bullet.X <= line.X + line.Width)
+                        {
+                            int xCounter = line.X;
+                            foreach (char symbol in line.GetData())
+                            {
+                                if (symbol == '▓')
+                                {
+                                    boardGameArray[line.Y, xCounter] = 1;
+                                }
+                                xCounter++;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+
         }
     }
 }

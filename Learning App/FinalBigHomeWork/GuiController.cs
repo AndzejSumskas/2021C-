@@ -12,7 +12,6 @@ namespace Learning_App.FinalBigHomeWork
 {
     class GuiController
     {
-        BoardGame boardGame = new BoardGame();
         GameWindow gameWindow = new GameWindow();
         Player player = new Player(10, 10, "Lukas");
         TankDirection tankDirection;
@@ -23,7 +22,6 @@ namespace Learning_App.FinalBigHomeWork
         {
             Console.Clear();
             gameWindow.Render();
-            boardGame.gameController();
             TankHandling();
 
             Console.ReadKey();
@@ -33,7 +31,7 @@ namespace Learning_App.FinalBigHomeWork
         private Bullet bullet = new Bullet(0,0);
 
         private void TankHandling()
-        {
+        {  
             player.currentTankModel = player.tankModel[2];
             do
             {

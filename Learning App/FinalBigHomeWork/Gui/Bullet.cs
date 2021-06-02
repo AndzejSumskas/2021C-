@@ -11,18 +11,28 @@ namespace Learning_App.FinalBigHomeWork.Gui
     class Bullet : GuiObject
     {
         BoardGame boardGame = new BoardGame();
-        GameWindow gameWindow = new GameWindow();
         public List<Bullet> listOfBulletsShutUp = new List<Bullet>();
         public List<Bullet> listOfBulletsShutDown = new List<Bullet>();
         public List<Bullet> listOfBulletsShutLeft = new List<Bullet>();
         public List<Bullet> listOfBulletsShutRight = new List<Bullet>();
 
+        public List<Bullet> listOfBulletsToBoardGame = new List<Bullet>();
+
 
         public bool shotIsActive;
+        private string name { get; set; }
+        public Bullet() : base(0, 0, 1, 1)
+        {
+        }
 
         public Bullet(int x, int y) : base(x, y, 1, 1)
         {
         }
+        public Bullet(int x, int y, string name) : base(x, y, 1, 1)
+        {
+            this.name = name;
+        }
+
         private char bullet = '☻';
 
         public override void Render()
@@ -46,6 +56,7 @@ namespace Learning_App.FinalBigHomeWork.Gui
             {
                 if(boardGame.GetBalteAreaArray()[listOfBulletsShutRight[i].Y, listOfBulletsShutRight[i].X] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutRight[i].Y, listOfBulletsShutRight[i].X] == 2)
                 {
+                    listOfBulletsToBoardGame.Add(new Bullet(listOfBulletsShutRight[i].X, listOfBulletsShutRight[i].Y, "ShutRight"));
                     tempListOfBullets.Add(i);
                     shotIsActive = false;
                 }
@@ -79,6 +90,7 @@ namespace Learning_App.FinalBigHomeWork.Gui
             {
                 if (boardGame.GetBalteAreaArray()[listOfBulletsShutLeft[i].Y, listOfBulletsShutLeft[i].X] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutLeft[i].Y, listOfBulletsShutLeft[i].X] == 2)
                 {
+                    listOfBulletsToBoardGame.Add(new Bullet(listOfBulletsShutLeft[i].X, listOfBulletsShutLeft[i].Y, "ShutLeft"));
                     tempListOfBullets.Add(i);
                     shotIsActive = false;
                 }
@@ -105,6 +117,11 @@ namespace Learning_App.FinalBigHomeWork.Gui
             }
         }
 
+        internal string GetName()
+        {
+            return name;
+        }
+
         private void ShutDown()
          {
             List<int> tempListOfBullets = new List<int>();
@@ -112,6 +129,7 @@ namespace Learning_App.FinalBigHomeWork.Gui
             {
                  if (boardGame.GetBalteAreaArray()[listOfBulletsShutDown[i].Y  , listOfBulletsShutDown[i].X] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutDown[i].Y , listOfBulletsShutDown[i].X] == 2)
                 {
+                    listOfBulletsToBoardGame.Add(new Bullet(listOfBulletsShutDown[i].X, listOfBulletsShutDown[i].Y, "ShutDown"));
                     tempListOfBullets.Add(i);
                     shotIsActive = false;
                 }
@@ -139,14 +157,20 @@ namespace Learning_App.FinalBigHomeWork.Gui
         }
 
         private void ShutUp()
-        {
+         {
             List<int> tempListOfBullets = new List<int>();
             for (int i = 0; i < listOfBulletsShutUp.Count; i++)
             {
                 if (boardGame.GetBalteAreaArray()[listOfBulletsShutUp[i].Y, listOfBulletsShutUp[i].X] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutUp[i].Y, listOfBulletsShutUp[i].X] == 2)
                 {
+                    //Pakitimas //Lyg ir veikia
+                    boardGame.AddToexplodedBulletsList(new Bullet(listOfBulletsShutUp[i].X, listOfBulletsShutUp[i].Y, "ShutUp"));
+                    //Old
+                    //listOfBulletsToBoardGame.Add(new Bullet(listOfBulletsShutUp[i].X, listOfBulletsShutUp[i].Y, "ShutUp"));
                     tempListOfBullets.Add(i);
                     shotIsActive = false;
+                    //Pakitimas
+                     boardGame.MakeChange();//Pakitimas
                 }
                 else
                 {
@@ -160,6 +184,7 @@ namespace Learning_App.FinalBigHomeWork.Gui
                         shotIsActive = true;
                     }
                 }
+ 
             }
 
             var tempList = from nr in tempListOfBullets
