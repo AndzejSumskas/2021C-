@@ -27,5 +27,10 @@ namespace Learning_App.FinalBigHomeWork.Gui
             }
             Console.Write(data);
         }
+
+        public string GetData()
+        {
+            return data;
+        }
     }
 }

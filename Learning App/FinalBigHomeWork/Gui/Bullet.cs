@@ -1,4 +1,5 @@
-﻿using Learning_App.FinalBigHomeWork.Windows;
+﻿using Learning_App.FinalBigHomeWork.Units;
+using Learning_App.FinalBigHomeWork.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Learning_App.FinalBigHomeWork.Gui
 {
     class Bullet : GuiObject
     {
+        BoardGame boardGame = new BoardGame();
         GameWindow gameWindow = new GameWindow();
         public List<Bullet> listOfBulletsShutUp = new List<Bullet>();
         public List<Bullet> listOfBulletsShutDown = new List<Bullet>();
@@ -39,26 +41,29 @@ namespace Learning_App.FinalBigHomeWork.Gui
 
         private void ShutRight()
         {
-            List<int> tempListOfNumbers = new List<int>();
+            List<int> tempListOfBullets = new List<int>();
             for (int i = 0; i < listOfBulletsShutRight.Count; i++)
             {
-                if (listOfBulletsShutRight[i].X >= gameWindow.X + gameWindow.Width -3)
+                if(boardGame.GetBalteAreaArray()[listOfBulletsShutRight[i].Y, listOfBulletsShutRight[i].X] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutRight[i].Y, listOfBulletsShutRight[i].X] == 2)
                 {
-                    tempListOfNumbers.Add(i);
+                    tempListOfBullets.Add(i);
                     shotIsActive = false;
                 }
                 else
                 {
-                    listOfBulletsShutRight[i].X+=6;
-                    if(listOfBulletsShutRight[i].X >= gameWindow.X + gameWindow.Width - 3)
+                    for (int j = 0; j < 6; j++)
                     {
-                        listOfBulletsShutRight[i].X = gameWindow.X + gameWindow.Width - 3;
-                    }
-                    shotIsActive = true;
+                        listOfBulletsShutRight[i].X += 1;
+                        if (boardGame.GetBalteAreaArray()[listOfBulletsShutRight[i].Y, listOfBulletsShutRight[i].X - 1] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutRight[i].Y, listOfBulletsShutRight[i].X - 1] == 2)
+                        {
+                            listOfBulletsShutRight[i].X -= 1;
+                        }
+                        shotIsActive = true;
+                    } 
                 }
             }
 
-            var tempList = from nr in tempListOfNumbers
+            var tempList = from nr in tempListOfBullets
                            orderby nr descending
                            select nr;
             foreach (var number in tempList)
@@ -68,27 +73,30 @@ namespace Learning_App.FinalBigHomeWork.Gui
         }
 
         private void ShutLeft()
-        {
-            List<int> tempListOfNumbers = new List<int>();
+         {
+            List<int> tempListOfBullets = new List<int>();
             for (int i = 0; i < listOfBulletsShutLeft.Count; i++)
             {
-                if (listOfBulletsShutLeft[i].X <= gameWindow.X + 2)
+                if (boardGame.GetBalteAreaArray()[listOfBulletsShutLeft[i].Y, listOfBulletsShutLeft[i].X] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutLeft[i].Y, listOfBulletsShutLeft[i].X] == 2)
                 {
-                    tempListOfNumbers.Add(i);
+                    tempListOfBullets.Add(i);
                     shotIsActive = false;
                 }
                 else
                 {
-                    listOfBulletsShutLeft[i].X-=6;
-                    if (listOfBulletsShutLeft[i].X <= gameWindow.X + 2)
+                    for (int j = 0; j < 6; j++)
                     {
-                        listOfBulletsShutLeft[i].X = 2;
+                        listOfBulletsShutLeft[i].X -= 1;
+                        if (boardGame.GetBalteAreaArray()[listOfBulletsShutLeft[i].Y, listOfBulletsShutLeft[i].X + 1] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutLeft[i].Y, listOfBulletsShutLeft[i].X + 1] == 2)
+                        {
+                            listOfBulletsShutLeft[i].X += 1;
+                        }
+                        shotIsActive = true;
                     }
-                    shotIsActive = true;
                 }
             }
 
-            var tempList = from nr in tempListOfNumbers
+            var tempList = from nr in tempListOfBullets
                            orderby nr descending
                            select nr;
             foreach (var number in tempList)
@@ -98,27 +106,30 @@ namespace Learning_App.FinalBigHomeWork.Gui
         }
 
         private void ShutDown()
-        {
-            List<int> tempListOfNumbers = new List<int>();
+         {
+            List<int> tempListOfBullets = new List<int>();
             for (int i = 0; i < listOfBulletsShutDown.Count; i++)
             {
-                if (listOfBulletsShutDown[i].Y >= gameWindow.Y + gameWindow.Height -1)
+                 if (boardGame.GetBalteAreaArray()[listOfBulletsShutDown[i].Y  , listOfBulletsShutDown[i].X] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutDown[i].Y , listOfBulletsShutDown[i].X] == 2)
                 {
-                    tempListOfNumbers.Add(i);
+                    tempListOfBullets.Add(i);
                     shotIsActive = false;
                 }
                 else
                 {
-                    listOfBulletsShutDown[i].Y+=3;
-                    if (listOfBulletsShutDown[i].Y >= gameWindow.Y + gameWindow.Height - 1)
+                    for (int j = 0; j < 3; j++)
                     {
-                        listOfBulletsShutDown[i].Y = gameWindow.Y + gameWindow.Height - 1;
-                    }
+                        listOfBulletsShutDown[i].Y += 1;
+                        if (boardGame.GetBalteAreaArray()[listOfBulletsShutDown[i].Y - 1, listOfBulletsShutDown[i].X] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutDown[i].Y -1, listOfBulletsShutDown[i].X] == 2)
+                        {
+                            listOfBulletsShutDown[i].Y -= 1;
+                        }
                         shotIsActive = true;
+                    }
                 }
             }
 
-            var tempList = from nr in tempListOfNumbers
+            var tempList = from nr in tempListOfBullets
                            orderby nr descending
                            select nr;
             foreach (var number in tempList)
@@ -129,26 +140,29 @@ namespace Learning_App.FinalBigHomeWork.Gui
 
         private void ShutUp()
         {
-            List<int> tempListOfNumbers = new List<int>();
+            List<int> tempListOfBullets = new List<int>();
             for (int i = 0; i < listOfBulletsShutUp.Count; i++)
             {
-                if (listOfBulletsShutUp[i].Y <= gameWindow.Y)
+                if (boardGame.GetBalteAreaArray()[listOfBulletsShutUp[i].Y, listOfBulletsShutUp[i].X] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutUp[i].Y, listOfBulletsShutUp[i].X] == 2)
                 {
-                    tempListOfNumbers.Add(i);
+                    tempListOfBullets.Add(i);
                     shotIsActive = false;
                 }
                 else
                 {
-                    listOfBulletsShutUp[i].Y-=3;
-                    if(listOfBulletsShutUp[i].Y <= gameWindow.Y)
+                    for (int j = 0; j < 3; j++)
                     {
-                        listOfBulletsShutUp[i].Y = gameWindow.Y;
+                        listOfBulletsShutUp[i].Y -= 1;
+                        if (boardGame.GetBalteAreaArray()[listOfBulletsShutUp[i].Y + 1, listOfBulletsShutUp[i].X] == 1 || boardGame.GetBalteAreaArray()[listOfBulletsShutUp[i].Y + 1, listOfBulletsShutUp[i].X] == 2)
+                        {
+                            listOfBulletsShutUp[i].Y += 1;
+                        }
+                        shotIsActive = true;
                     }
-                    shotIsActive = true;
                 }
             }
 
-            var tempList = from nr in tempListOfNumbers
+            var tempList = from nr in tempListOfBullets
                            orderby nr descending
                            select nr;
             foreach (var number in tempList)

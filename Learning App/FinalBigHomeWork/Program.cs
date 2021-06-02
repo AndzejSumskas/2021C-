@@ -1,4 +1,5 @@
 ﻿using Learning_App.FinalBigHomeWork.Gui;
+using Learning_App.FinalBigHomeWork.Units;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,14 @@ namespace Learning_App.FinalBigHomeWork
     {
         static void Main()
         {
+           
             GuiController guiController = new GuiController();
-
             guiController.StartAplication();
 
-            
+            //BoardGame b = new BoardGame();
+            //b.gameController();
+            //int[,] boardGame = b.GetBalteAreaArray();
+
 
 
 

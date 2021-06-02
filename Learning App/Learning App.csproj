@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="FinalBigHomeWork\Game\" />
     <Folder Include="Lesson10\" />
   </ItemGroup>
 

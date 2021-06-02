@@ -1,4 +1,5 @@
-﻿using Learning_App.FinalBigHomeWork.Windows;
+﻿using Learning_App.FinalBigHomeWork.Units;
+using Learning_App.FinalBigHomeWork.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,10 @@ namespace Learning_App.FinalBigHomeWork.Gui
             new char[]{ '▒', '▒', ' ', ' ', '▒', '▒', '▒', '▒', '█', '█', '▒', '▒', '▒', '▒', '¦', '¦', '▒', '▒' }
         };
 
-        
-
+        private int[,] boardArray = new int[30,100];
         private GameWindow gameWindow = new GameWindow();
+
+        private BoardGame boardGame = new BoardGame();
 
         public char[] currentTankModel { get; set; }
 
@@ -45,9 +47,10 @@ namespace Learning_App.FinalBigHomeWork.Gui
         }
 
         internal void MoveDown()
-        {
-            
-            if (Y + 5> gameWindow.Y + gameWindow.Height) { }
+        {            
+            if (boardGame.GetBalteAreaArray()[Y+3,X] == 1 || boardGame.GetBalteAreaArray()[Y + 3, X] == 2 || boardGame.GetBalteAreaArray()[Y + 3, X+5] == 1)
+            {  
+            }
             else
             {
                 Y++;
@@ -56,7 +59,9 @@ namespace Learning_App.FinalBigHomeWork.Gui
 
         internal void MoveUp()
         {
-            if (Y-1 <= gameWindow.Y) { }
+            if (boardGame.GetBalteAreaArray()[Y-1, X] == 1 || boardGame.GetBalteAreaArray()[Y-1, X] == 2 || boardGame.GetBalteAreaArray()[Y-1, X + 5] == 1)
+            {
+            }
             else
             {
                 Y--;
@@ -65,25 +70,29 @@ namespace Learning_App.FinalBigHomeWork.Gui
 
         internal void MoveLeft()
         {
-            if(X -2  <= gameWindow.X) { }
+            if (boardGame.GetBalteAreaArray()[Y, X-1] == 1 || boardGame.GetBalteAreaArray()[Y, X-1] == 2 || boardGame.GetBalteAreaArray()[Y+2, X-1] == 1)
+            {
+            }
             else
             {
-                X -= 2;
+                X--;
             }
         }
 
         internal void MoveRight()
         {
-            if (X + 9 > gameWindow.X + gameWindow.Width)  { }
+            if (boardGame.GetBalteAreaArray()[Y, X +6] == 1 || boardGame.GetBalteAreaArray()[Y, X +6] == 2 || boardGame.GetBalteAreaArray()[Y + 2, X+6] == 1)
+            {
+            }
             else
             {
-                X += 2;
-                //if(true)
-                //{
-                //    X -= 2;
-                //}
-            }
+                X++;
+            } 
+        }
 
+        public void SetBatleBoard(int[,] array)
+        {
+            boardArray = array;
         }
     }
 }
