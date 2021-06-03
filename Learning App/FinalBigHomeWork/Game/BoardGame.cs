@@ -112,6 +112,8 @@ namespace Learning_App.FinalBigHomeWork.Units
                 switch (bullet.GetName())
                 {
                     case "ShutUp":
+                        
+                       //gameWindow.textLines.Add(new TextLine(50, 30, 24, "▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓"));
                         break;
                     case "ShutDown":
                         break;
@@ -126,36 +128,35 @@ namespace Learning_App.FinalBigHomeWork.Units
 
                 }
 
-                //
-                for (int i = 0; i < gameWindow.textLines.Count; i++)
-                {
-                    if (explodeY == bullet.Y)
-                    {
-                        if (bullet.X >= explodeX && bullet.X <= explodeX + gameWindow.textLines[i].Width)
-                        {
-                            Console.WriteLine(456464554);
-                        }
-                    }
-                }
-                foreach (var line in gameWindow.textLines)
-                {
-                    if(bullet.Y == line.Y)
-                    {
-                        if (bullet.X >= line.X && bullet.X <= line.X + line.Width)
-                        {
-                            int xCounter = line.X;
-                            foreach (char symbol in line.GetData())
-                            {
-                                if (symbol == '▓')
-                                {
-                                    boardGameArray[line.Y, xCounter] = 1;
-                                }
-                                xCounter++;
-                            }
-                        }
-                    }
+                //for (int i = 0; i < gameWindow.textLines.Count; i++)
+                //{
+                //    if (explodeY == bullet.Y)
+                //    {
+                //        if (bullet.X >= explodeX && bullet.X <= explodeX + gameWindow.textLines[i].Width)
+                //        {
+                //            Console.WriteLine(456464554);
+                //        }
+                //    }
+                //}
+                //foreach (var line in gameWindow.textLines)
+                //{
+                //    if(bullet.Y == line.Y)
+                //    {
+                //        if (bullet.X >= line.X && bullet.X <= line.X + line.Width)
+                //        {
+                //            int xCounter = line.X;
+                //            foreach (char symbol in line.GetData())
+                //            {
+                //                if (symbol == '▓')
+                //                {
+                //                    boardGameArray[line.Y, xCounter] = 1;
+                //                }
+                //                xCounter++;
+                //            }
+                //        }
+                //     }
 
-                }
+                //}
             }
 
 

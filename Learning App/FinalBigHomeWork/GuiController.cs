@@ -1,4 +1,5 @@
 ﻿using Learning_App.FinalBigHomeWork.Constants;
+using Learning_App.FinalBigHomeWork.Data;
 using Learning_App.FinalBigHomeWork.Gui;
 using Learning_App.FinalBigHomeWork.Units;
 using Learning_App.FinalBigHomeWork.Windows;
@@ -12,8 +13,8 @@ namespace Learning_App.FinalBigHomeWork
 {
     class GuiController
     {
-        GameWindow gameWindow = new GameWindow();
-        Player player = new Player(10, 10, "Lukas");
+        GameData gameData = new GameData();
+        ActionWindow actionWindow = new ActionWindow();
         TankDirection tankDirection;
         private bool bulletIsActive;
         private bool applicationIsRunning = true;
@@ -21,121 +22,123 @@ namespace Learning_App.FinalBigHomeWork
         public void StartAplication()
         {
             Console.Clear();
-            gameWindow.Render();
+            gameData.player.currentTankModel = gameData.player.tankModel[2];
+            actionWindow.Render();
             TankHandling();
 
             Console.ReadKey();
-
         }
 
         private Bullet bullet = new Bullet(0,0);
 
         private void TankHandling()
         {  
-            player.currentTankModel = player.tankModel[2];
             do
             {
                 while (Console.KeyAvailable)
-                 {
-                    
+                 { 
                     var key = Console.ReadKey(true);
                     switch (key.Key)
                     {
                         case ConsoleKey.LeftArrow:
-                            if(player.currentTankModel == player.tankModel[1])
+                            if (gameData.player.currentTankModel == gameData.player.tankModel[1])
                             {
-                                player.MoveLeft();
+                                gameData.MoveLeft();
                             }
-                            player.currentTankModel = player.tankModel[1];
+                            gameData.player.currentTankModel = gameData.player.tankModel[1];
                             tankDirection = TankDirection.Left;
+                            //gameData.player.Render();
                             break;
                         case ConsoleKey.RightArrow:
-                            if(player.currentTankModel == player.tankModel[0])
+                            if (gameData.player.currentTankModel == gameData.player.tankModel[0])
                             {
-                                player.MoveRight();
+                                gameData.MoveRight();
                             }
-                            player.currentTankModel = player.tankModel[0];
+                            gameData.player.currentTankModel = gameData.player.tankModel[0];
                             tankDirection = TankDirection.Right;
                             break;
                         case ConsoleKey.UpArrow:
-                            if(player.currentTankModel == player.tankModel[2])
+                            if (gameData.player.currentTankModel == gameData.player.tankModel[2])
                             {
-                                player.MoveUp();
+                                gameData.MoveUp();
                             }
-                            player.currentTankModel = player.tankModel[2];
+                            gameData.player.currentTankModel = gameData.player.tankModel[2];
                             tankDirection = TankDirection.Up;
                             break;
                         case ConsoleKey.DownArrow:
-                            if (player.currentTankModel == player.tankModel[3])
+                            if (gameData.player.currentTankModel == gameData.player.tankModel[3])
                             {
-                                player.MoveDown();
+                                gameData.MoveDown();
                             }
-                            player.currentTankModel = player.tankModel[3];
+                            gameData.player.currentTankModel = gameData.player.tankModel[3];
                             tankDirection = TankDirection.Down;
                             break;
-                        case ConsoleKey.Spacebar:
-                           
-                            switch (tankDirection)
-                            {                                
-                                case TankDirection.Up:
-                                    bullet.listOfBulletsShutUp.Add(new Bullet(player.X + 2, player.Y - 1));
-                                    break;
-                                case TankDirection.Down:
-                                    bullet.listOfBulletsShutDown.Add(new Bullet(player.X + 2, player.Y + 3));
-                                    break;
-                                case TankDirection.Left:
-                                    bullet.listOfBulletsShutLeft.Add(new Bullet(player.X - 1, player.Y + 1));
-                                    break;
-                                case TankDirection.Right:
-                                    bullet.listOfBulletsShutRight.Add(new Bullet(player.X + 6, player.Y + 1));
-                                    break;
-                            }
-                            bulletIsActive = true;
-                            foreach (var bullet in bullet.listOfBulletsShutUp)
-                            {
-                                bullet.Render();
-                            }
-                            foreach (var bullet in bullet.listOfBulletsShutDown)
-                            {
-                                bullet.Render();
-                            }
-                            foreach (var bullet in bullet.listOfBulletsShutLeft)
-                            {
-                                bullet.Render();
-                            }
-                            foreach (var bullet in bullet.listOfBulletsShutRight)
-                            {
-                                bullet.Render();
-                            }
-                            break;
-                    }  
-                }
-                gameWindow.Render();
-                player.Render();
-                if (bulletIsActive)
-                {
-                    bullet.BulletsShots();
-                    if (bullet.shotIsActive == false)
-                    {
-                        bulletIsActive = false;
-                    }
-                    foreach (var bullet in bullet.listOfBulletsShutUp)
-                    {
-                        bullet.Render();
-                    }
-                    foreach (var bullet in bullet.listOfBulletsShutDown)
-                    {
-                        bullet.Render();
-                    }
-                    foreach (var bullet in bullet.listOfBulletsShutLeft)
-                    {
-                        bullet.Render();
-                    }
-                    foreach (var bullet in bullet.listOfBulletsShutRight)
-                    {
-                        bullet.Render();
+                            //case ConsoleKey.Spacebar:
+
+                            //    switch (tankDirection)
+                            //    {                                
+                            //        case TankDirection.Up:
+                            //            bullet.listOfBulletsShutUp.Add(new Bullet(player.X + 2, player.Y - 1));
+                            //            break;
+                            //        case TankDirection.Down:
+                            //            bullet.listOfBulletsShutDown.Add(new Bullet(player.X + 2, player.Y + 3));
+                            //            break;
+                            //        case TankDirection.Left:
+                            //            bullet.listOfBulletsShutLeft.Add(new Bullet(player.X - 1, player.Y + 1));
+                            //            break;
+                            //        case TankDirection.Right:
+                            //            bullet.listOfBulletsShutRight.Add(new Bullet(player.X + 6, player.Y + 1));
+                            //            break;
+                            //    }
+                            //    //bulletIsActive = true;
+                            //    //foreach (var bullet in bullet.listOfBulletsShutUp)
+                            //    //{
+                            //    //    bullet.Render();
+                            //    //}
+                            //    //foreach (var bullet in bullet.listOfBulletsShutDown)
+                            //    //{
+                            //    //    bullet.Render();
+                            //    //}
+                            //    //foreach (var bullet in bullet.listOfBulletsShutLeft)
+                            //    //{
+                            //    //    bullet.Render();
+                            //    //}
+                            //    //foreach (var bullet in bullet.listOfBulletsShutRight)
+                            //    //{
+                            //    //    bullet.Render();
+                            //    //}
+                            //    //break;
                     }
                 }
+                Console.SetCursorPosition(0, 0);
+                actionWindow.Render();
+                gameData.player.Render();
+                //gameWindow.Render();
+                //player.Render();
+                //if (bulletIsActive)
+                //{
+                //    bullet.BulletsShots();
+                //    if (bullet.shotIsActive == false)
+                //    {
+                //        bulletIsActive = false;
+                //    }
+                //    foreach (var bullet in bullet.listOfBulletsShutUp)
+                //    {
+                //        bullet.Render();
+                //    }
+                //    foreach (var bullet in bullet.listOfBulletsShutDown)
+                //    {
+                //        bullet.Render();
+                //    }
+                //    foreach (var bullet in bullet.listOfBulletsShutLeft)
+                //    {
+                //        bullet.Render();
+                //    }
+                //    foreach (var bullet in bullet.listOfBulletsShutRight)
+                //    {
+                //        bullet.Render();
+                //    }
+                //}
                 System.Threading.Thread.Sleep(10);
 
 

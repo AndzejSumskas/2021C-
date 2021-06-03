@@ -17,14 +17,10 @@ namespace Learning_App.FinalBigHomeWork.Gui
             new char[]{ '▒', '▒', ' ', ' ', '▒', '▒', '▒', '▒', '█', '█', '▒', '▒', '▒', '▒', '¦', '¦', '▒', '▒' }
         };
 
-        private int[,] boardArray = new int[30,100];
-        private GameWindow gameWindow = new GameWindow();
-
-        private BoardGame boardGame = new BoardGame();
-
+        
         public char[] currentTankModel { get; set; }
 
-        public Unit(int x, int y) : base(x, y, 15, 3)
+        public Unit(int x, int y) : base(x, y, 18, 3)
         {
         }
 
@@ -44,55 +40,6 @@ namespace Learning_App.FinalBigHomeWork.Gui
             }
             Y -= counter;
             Console.WriteLine();
-        }
-
-        internal void MoveDown()
-        {            
-            if (boardGame.GetBalteAreaArray()[Y+3,X] == 1 || boardGame.GetBalteAreaArray()[Y + 3, X] == 2 || boardGame.GetBalteAreaArray()[Y + 3, X+5] == 1)
-            {  
-            }
-            else
-            {
-                Y++;
-            }
-        }
-
-        internal void MoveUp()
-        {
-            if (boardGame.GetBalteAreaArray()[Y-1, X] == 1 || boardGame.GetBalteAreaArray()[Y-1, X] == 2 || boardGame.GetBalteAreaArray()[Y-1, X + 5] == 1)
-            {
-            }
-            else
-            {
-                Y--;
-            }
-        }
-
-        internal void MoveLeft()
-        {
-            if (boardGame.GetBalteAreaArray()[Y, X-1] == 1 || boardGame.GetBalteAreaArray()[Y, X-1] == 2 || boardGame.GetBalteAreaArray()[Y+2, X-1] == 1)
-            {
-            }
-            else
-            {
-                X--;
-            }
-        }
-
-        internal void MoveRight()
-        {
-            if (boardGame.GetBalteAreaArray()[Y, X +6] == 1 || boardGame.GetBalteAreaArray()[Y, X +6] == 2 || boardGame.GetBalteAreaArray()[Y + 2, X+6] == 1)
-            {
-            }
-            else
-            {
-                X++;
-            } 
-        }
-
-        public void SetBatleBoard(int[,] array)
-        {
-            boardArray = array;
         }
     }
 }

@@ -11,6 +11,10 @@ namespace Learning_App.FinalBigHomeWork.Windows
     {
         public List<TextLine> textLines = new List<TextLine>();
 
+        //Testing
+
+        
+
         public GameWindow() : base(0, 0, 100, 30, "GameWindow", '▓')
         {
             textLines.Add(new TextLine(44, 25, 12, "▓▓▓▓▓▓▓▓▓▓▓▓"));
@@ -41,7 +45,8 @@ namespace Learning_App.FinalBigHomeWork.Windows
 
         public override void Render()
         {
-            base.Render();
+            
+            //base.Render();
             foreach (var textLine in textLines)
             {
                 textLine.Render();

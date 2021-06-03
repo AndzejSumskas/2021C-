@@ -28,5 +28,15 @@ namespace Learning_App.BigHomeWork4Task.Gui
             }
             Console.Write(data);
         }
+
+        internal int GetX()
+        {
+            return X;
+        }
+
+        internal IEnumerable<char> GetData()
+        {
+            return data;
+        }
     }
 }
