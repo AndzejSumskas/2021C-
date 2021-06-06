@@ -18,8 +18,7 @@ namespace Learning_App.FinalBigHomeWork.Windows
             {
                 gameData.GameAreaDataToStartGame();
             }
-            int tempPlayerX = 0;
-            int tempPlayerY = 0;
+          
             for (int i = 0; i < gameData.GetBatleAreaHight(); i++)
             {
                 for (int j = 0; j < gameData.GetBatleAreaWidth(); j++)
@@ -38,18 +37,11 @@ namespace Learning_App.FinalBigHomeWork.Windows
                     }
                     if (gameData.GetBalteAreaArray()[i, j] == 9)
                     {
-                        tempPlayerX = j;
-                        tempPlayerY = i;
                         Console.Write(" ");
                     }
                 }
                 Console.WriteLine();     
             }
-        }
-
-        public void UpgradeDataRender(int[,] boardGameArray)
-        {
-
         }
 
         public void Render(int[,] boardGameArray)

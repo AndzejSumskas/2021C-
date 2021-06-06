@@ -18,13 +18,20 @@ namespace Learning_App.FinalBigHomeWork
         Directions tankDirection;
         private bool bulletIsActive;
         private bool applicationIsRunning = true;
+        public int[,] boardGameArray;
+        Player player;
+        public List<Enemy> enemies;
+
 
         public void StartAplication()
         {
+            player = gameData.GetPlayer();
+            boardGameArray = gameData.GetBoardGameArray();
+            enemies = gameData.GetEnemies();
             Console.Clear();  
             gameData.player.currentTankModel = gameData.player.tankModel[2];
             tankDirection = Directions.Notrh;
-            gameData.GameAreaDataToStartGame();
+            //gameData.GameAreaDataToStartGame();
             TankHandling();
 
             Console.ReadKey();
@@ -45,35 +52,35 @@ namespace Learning_App.FinalBigHomeWork
                     switch (key.Key)
                     {
                         case ConsoleKey.LeftArrow:
-                            if (gameData.player.currentTankModel == gameData.player.tankModel[1])
+                            if (player.currentTankModel == player.tankModel[1])
                             {
-                                gameData.MovePlayerWest();
+                                MovePlayerWest();
                             }
-                            gameData.player.currentTankModel = gameData.player.tankModel[1];
+                            player.currentTankModel = player.tankModel[1];
                             tankDirection = Directions.West;
                             break;
                         case ConsoleKey.RightArrow:
-                            if (gameData.player.currentTankModel == gameData.player.tankModel[0])
+                            if (player.currentTankModel == player.tankModel[0])
                             {
-                                gameData.MovePlayerEast();
+                                MovePlayerEast();
                             }
-                            gameData.player.currentTankModel = gameData.player.tankModel[0];
+                            player.currentTankModel = player.tankModel[0];
                             tankDirection = Directions.East;
                             break;
                         case ConsoleKey.UpArrow:
-                            if (gameData.player.currentTankModel == gameData.player.tankModel[2])
+                            if (player.currentTankModel == player.tankModel[2])
                             {
-                                gameData.MovePlayerNorth();
+                                MovePlayerNorth();
                             }
-                            gameData.player.currentTankModel = gameData.player.tankModel[2];
+                            player.currentTankModel = player.tankModel[2];
                             tankDirection = Directions.Notrh;
                             break;
                         case ConsoleKey.DownArrow:
-                            if (gameData.player.currentTankModel == gameData.player.tankModel[3])
+                            if (player.currentTankModel == player.tankModel[3])
                             {
-                                gameData.MovePlayerSouth();
+                                MovePlayerSouth();
                             }
-                            gameData.player.currentTankModel = gameData.player.tankModel[3];
+                            player.currentTankModel = player.tankModel[3];
                             tankDirection = Directions.South;
                             break;
                         case ConsoleKey.Spacebar:
@@ -81,16 +88,16 @@ namespace Learning_App.FinalBigHomeWork
                             switch (tankDirection)
                             {
                                 case Directions.Notrh:
-                                    bullet.listOfShootedBullets.Add(new Bullet(gameData.player.X + 2, gameData.player.Y - 1, $"{Directions.Notrh}"));
+                                    bullet.listOfShootedBullets.Add(new Bullet(player.X + 2, player.Y - 1, $"{Directions.Notrh}"));
                                     break;
                                 case Directions.South:
-                                    bullet.listOfShootedBullets.Add(new Bullet(gameData.player.X + 2, gameData.player.Y + 3, $"{Directions.South}"));
+                                    bullet.listOfShootedBullets.Add(new Bullet(player.X + 2, player.Y + 3, $"{Directions.South}"));
                                     break;
                                 case Directions.West:
-                                    bullet.listOfShootedBullets.Add(new Bullet(gameData.player.X - 1, gameData.player.Y + 1, $"{Directions.West}"));
+                                    bullet.listOfShootedBullets.Add(new Bullet(player.X - 1, player.Y + 1, $"{Directions.West}"));
                                     break;
                                 case Directions.East:
-                                    bullet.listOfShootedBullets.Add(new Bullet(gameData.player.X + 6, gameData.player.Y + 1, $"{Directions.East}"));
+                                    bullet.listOfShootedBullets.Add(new Bullet(player.X + 6, player.Y + 1, $"{Directions.East}"));
                                     break;
                             }
                             bulletIsActive = true;
@@ -102,18 +109,13 @@ namespace Learning_App.FinalBigHomeWork
                     }
                 }
                 Console.SetCursorPosition(0, 0);
-                actionWindow.Render(gameData.boardGameArray);
+                actionWindow.Render(boardGameArray);
                 //Enemy Action
 
                 //EnemiesChangeDirection();
                 EnemyAction();
-
-
-
-
-                //
-                gameData.player.Render();
-                foreach (var enemie in gameData.enemies)
+                player.Render();
+                foreach (var enemie in enemies)
                 {
                     enemie.Render();
                 }  //Enemies Render()
@@ -131,7 +133,7 @@ namespace Learning_App.FinalBigHomeWork
 
         private void EnemyAction()
         {
-            foreach (var enemy in gameData.enemies)
+            foreach (var enemy in enemies)
             {
                 if(enemy.currentTankModel == enemy.tankModel[1])
                 {
@@ -189,20 +191,20 @@ namespace Learning_App.FinalBigHomeWork
                         numberOfExtraDestoyWall = +1;  
                         break;
                 }
-                if (gameData.GetBalteAreaArray()[bullet.Y, bullet.X] == 1 ||
-                    gameData.GetBalteAreaArray()[bullet.Y, bullet.X] == 2)
+                if (boardGameArray[bullet.Y, bullet.X] == 1 ||
+                    boardGameArray[bullet.Y, bullet.X] == 2  )
                 {
                     tempListOfBullets.Add(counter);
                     counter++;
                     bulletIsActive = false;
-                    if(gameData.GetBalteAreaArray()[bullet.Y, bullet.X] == 1)
+                    if(boardGameArray[bullet.Y, bullet.X] == 1)
                      {
                         if (numberOfBulletMoves == 3)
                         {
                             int tempbullet = -2;
                             for (int i = 0; i < 6; i++)
                             {
-                                gameData.boardGameArray[bullet.Y, bullet.X + tempbullet + i] = 0;
+                                boardGameArray[bullet.Y, bullet.X + tempbullet + i] = 0;
                             }   
                         }
                         else
@@ -210,26 +212,28 @@ namespace Learning_App.FinalBigHomeWork
                             int tempbullet = -1;
                              for (int i = 0; i < 3; i++)
                             {
-                                gameData.boardGameArray[bullet.Y + tempbullet + i, bullet.X] = 0;
-                                gameData.boardGameArray[bullet.Y + tempbullet + i, bullet.X + numberOfExtraDestoyWall] = 0;
+                                boardGameArray[bullet.Y + tempbullet + i, bullet.X] = 0;
+                                boardGameArray[bullet.Y + tempbullet + i, bullet.X + numberOfExtraDestoyWall] = 0;
                             }
                         }
                     }
                 }
-                else   if(gameData.GetBalteAreaArray()[bullet.Y, bullet.X] == 9)
+                else   if(boardGameArray[bullet.Y, bullet.X] == 9)
                 {
-                    for (int i = 0; i < gameData.enemies.Count; i++)
+                    tempListOfBullets.Add(counter);
+                    counter++;
+                    for (int i = 0; i <enemies.Count; i++)
                     {
-                        if (gameData.enemies[i].X + 5 >= bullet.X && gameData.enemies[i].X < bullet.X + 6 && gameData.enemies[i].Y+2 >= bullet.Y && gameData.enemies[i].Y < bullet.Y + 3)
+                        if (enemies[i].X + 5 >= bullet.X && enemies[i].X < bullet.X + 6 && enemies[i].Y+2 >= bullet.Y && enemies[i].Y < bullet.Y + 3)
                         {
                             for (int j = 0; j < 6; j++)
                             {
                                 for (int k = 0; k < 3; k++)
                                 {
-                                    gameData.boardGameArray[gameData.enemies[i].Y+k, gameData.enemies[i].X+j] = 0;
+                                    boardGameArray[gameData.enemies[i].Y+k, enemies[i].X+j] = 0;
                                 }
                             }
-                            gameData.enemies.RemoveAt(i);
+                            enemies.RemoveAt(i);
                         }
                     }
                     
@@ -240,8 +244,8 @@ namespace Learning_App.FinalBigHomeWork
                     {
                         bullet.Y += numberOfBulletMovementY;
                         bullet.X += numberOfBulletMovementX;
-                        if (gameData.GetBalteAreaArray()[bullet.Y, bullet.X] == 1 ||
-                    gameData.GetBalteAreaArray()[bullet.Y, bullet.X] == 2)
+                        if (boardGameArray[bullet.Y, bullet.X] == 1 ||
+                             boardGameArray[bullet.Y, bullet.X] == 2)
                         {
                             j = numberOfBulletMoves;
                         }
@@ -273,7 +277,7 @@ namespace Learning_App.FinalBigHomeWork
             for (int i = 0; i < 3; i++)
             {
                 bool endOfRoad = false;
-                if (gameData.boardGameArray[enemy.Y + i, enemy.X] == 1 || gameData.boardGameArray[enemy.Y + i, enemy.X] == 8)
+                if (boardGameArray[enemy.Y + i, enemy.X] == 1 || boardGameArray[enemy.Y + i, enemy.X] == 8)
                 {
                     enemy.X = enemy.X + 2;
                     endOfRoad = true;
@@ -287,7 +291,6 @@ namespace Learning_App.FinalBigHomeWork
 
         internal void MoveEnemyEast(Enemy enemy)
         {
-            enemy.Render();
             enemy.X = enemy.X + 2;
             if (enemy.X > gameData.GetBatleAreaWidth() - 8)
             {
@@ -297,7 +300,7 @@ namespace Learning_App.FinalBigHomeWork
             for (int i = 0; i < 3; i++)
             {
                 bool endOfRoad = false;
-                if (gameData.boardGameArray[enemy.Y + i, enemy.X + 5] == 1 || gameData.boardGameArray[enemy.Y + i, enemy.X + 5] == 8)
+                if (boardGameArray[enemy.Y + i, enemy.X + 5] == 1 || boardGameArray[enemy.Y + i, enemy.X + 5] == 8)
                 {
                     enemy.X = enemy.X - 2;
                     endOfRoad = true;
@@ -322,7 +325,7 @@ namespace Learning_App.FinalBigHomeWork
             for (int i = 0; i < 6; i++)
             {
                 bool endOfRoad = false;
-                if (gameData.boardGameArray[enemy.Y, enemy.X + i] == 1 || gameData.boardGameArray[enemy.Y, enemy.X + i] == 8)
+                if (boardGameArray[enemy.Y, enemy.X + i] == 1 || boardGameArray[enemy.Y, enemy.X + i] == 8)
                 {
                     enemy.Y = enemy.Y + 1;
                     endOfRoad = true;
@@ -345,7 +348,7 @@ namespace Learning_App.FinalBigHomeWork
             for (int i = 0; i < 6; i++)
             {
                 bool endOfRoad = false;
-                if (gameData.boardGameArray[enemy.Y + 2, enemy.X + i] == 1 || gameData.boardGameArray[enemy.Y + 2, enemy.X + i] == 8)
+                if (boardGameArray[enemy.Y + 2, enemy.X + i] == 1 || boardGameArray[enemy.Y + 2, enemy.X + i] == 8)
                 {
                     enemy.Y = enemy.Y - 1;
                     endOfRoad = true;
@@ -378,7 +381,71 @@ namespace Learning_App.FinalBigHomeWork
 
         }
 
-
         private Random rnd = new Random();
+
+        internal void MovePlayerWest()
+        {
+            player.X = player.X - 2;
+            if (player.X < 2)
+            {
+                player.X = 2;
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (boardGameArray[player.Y + i, player.X] == 1 || boardGameArray[player.Y + i, player.X] == 9)
+                {
+                    player.X = player.X + 2;
+                }
+            }
+        }
+
+        internal void MovePlayerEast()
+        {
+            player.X = player.X + 2;
+            if (player.X > gameData.GetBatleAreaWidth() - 8)
+            {
+                player.X = gameData.GetBatleAreaWidth() - 8;
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (boardGameArray[player.Y + i, player.X + 5] == 1 || boardGameArray[player.Y + i, player.X + 5] == 9)
+                {
+                    player.X = player.X - 2;
+                }
+            }
+        }
+
+        internal void MovePlayerNorth()
+        {
+            player.Y = player.Y - 1;
+            if (player.Y < 1)
+            {
+                player.Y = 1;
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                if (boardGameArray[player.Y, player.X + i] == 1 || boardGameArray[player.Y, player.X + i] == 9)
+                {
+                    player.Y = player.Y + 1;
+                }
+            }
+        }
+
+        internal void MovePlayerSouth()
+        {
+            player.Y = player.Y + 1;
+            if (player.Y > gameData.GetBatleAreaHight() - 4)
+            {
+                player.Y = gameData.GetBatleAreaHight() - 4;
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                if (boardGameArray[player.Y + 2, player.X + i] == 1 || boardGameArray[player.Y + 2, player.X + i] == 9)
+                {
+                    player.Y = player.Y - 1;
+                }
+            }
+        }
+
     }
 }
