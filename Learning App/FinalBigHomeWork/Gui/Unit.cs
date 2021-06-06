@@ -23,6 +23,9 @@ namespace Learning_App.FinalBigHomeWork.Gui
         public Unit(int x, int y) : base(x, y, 18, 3)
         {
         }
+        public Unit() : base(0, 0, 18, 3)
+        {
+        }
 
         public override void Render()
         {

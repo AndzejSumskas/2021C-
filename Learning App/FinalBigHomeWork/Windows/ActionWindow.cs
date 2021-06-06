@@ -11,30 +11,32 @@ namespace Learning_App.FinalBigHomeWork.Windows
     class ActionWindow
     {
         GameData gameData = new GameData();
-
+        private bool useOnlyOneToIinitializateField = true;
         public void Render()
-        {
-            gameData.GameAreaData();
-            int[,] boardGameArrayCopy = gameData.GetBoardGameArray();
+        {    
+            if(useOnlyOneToIinitializateField)
+            {
+                gameData.GameAreaDataToStartGame();
+            }
             int tempPlayerX = 0;
             int tempPlayerY = 0;
             for (int i = 0; i < gameData.GetBatleAreaHight(); i++)
             {
                 for (int j = 0; j < gameData.GetBatleAreaWidth(); j++)
                 {
-                    if (boardGameArrayCopy[i, j] == 2)
+                    if (gameData.GetBalteAreaArray()[i, j] == 2)
                     {
                         Console.Write("▓");
                     }
-                    if (boardGameArrayCopy[i, j] == 1)
+                    if (gameData.GetBalteAreaArray()[i, j] == 1)
                     {
                         Console.Write("▓");
                     }
-                    if (boardGameArrayCopy[i, j] == 0)
+                    if (gameData.GetBalteAreaArray()[i, j] == 0)
                     {
                         Console.Write(" ");
                     }
-                    if (boardGameArrayCopy[i, j] == 9)
+                    if (gameData.GetBalteAreaArray()[i, j] == 9)
                     {
                         tempPlayerX = j;
                         tempPlayerY = i;
@@ -43,7 +45,42 @@ namespace Learning_App.FinalBigHomeWork.Windows
                 }
                 Console.WriteLine();     
             }
-            //gameData.player.Render();
+        }
+
+        public void UpgradeDataRender(int[,] boardGameArray)
+        {
+
+        }
+
+        public void Render(int[,] boardGameArray)
+        {
+            for (int i = 0; i < gameData.GetBatleAreaHight(); i++)
+            {
+                for (int j = 0; j < gameData.GetBatleAreaWidth(); j++)
+                {
+                    if (boardGameArray[i, j] == 2)
+                    {
+                        Console.Write("▓");
+                    }
+                    if (boardGameArray[i, j] == 1)
+                    {
+                        Console.Write("▓");
+                    }
+                    if (boardGameArray[i, j] == 0)
+                    {
+                        Console.Write(" ");
+                    }
+                    if (boardGameArray[i, j] == 9)
+                    {              
+                        Console.Write(" ");
+                    }
+                    if (boardGameArray[i, j] == 8)
+                    {
+                        Console.Write(" ");
+                    }
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

@@ -20,39 +20,7 @@ namespace Learning_App.FinalBigHomeWork
             guiController.StartAplication();
 
             GameData data = new GameData();
-            //data.GameAreaData();
-
-            //ActionWindow actionWindow = new ActionWindow();
-            //data.player.currentTankModel = data.player.tankModel[0];
-            //actionWindow.Render();
-           
-           // data.player.Render();
-
-
-
-
-
-
-
-            //BoardGame b = new BoardGame();
-            //b.gameController();
-            //int[,] boardGame = b.GetBalteAreaArray();
-
-
-
-
-
-            //Console.WriteLine("▒▒▒▒▒▒");
-            //Console.WriteLine("  ██==");
-            //Console.WriteLine("▒▒▒▒▒▒");
-
-            //Console.WriteLine();
-
-
-            //Console.WriteLine("▒▒¦¦▒▒");
-            //Console.WriteLine("▒▒██▒▒");
-            //Console.WriteLine("▒▒  ▒▒");
-
+            //data.GameAreaDataToStartGame(); // for testing
 
             Console.ReadKey();
         }

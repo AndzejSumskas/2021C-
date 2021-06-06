@@ -14,25 +14,68 @@ namespace Learning_App.FinalBigHomeWork.Data
         //Battle area width and hight
         private const int batleAreaHeight = 30;
         private const int batleAreaHWidth = 100;
-        public Player player = new Player(35, 25, "Thomas");
+        public List<Enemy> enemies = new List<Enemy>() { 
+            //{ new Enemy(3,26,1,"Enemy1")},
+            //{ new Enemy(91,26,1,"Enemy1")},
+            //{ new Enemy(15,15,1,"Enemy1")},
+            //{ new Enemy(10,10,1,"Enemy1")},
+            { new Enemy(3,1,1,"Enemy1")},
+            { new Enemy(47,1,1,"Enemy2")},
+            { new Enemy(91,1,1,"Enemy3")}};
 
-        private int[,] boardGameArray = new int[batleAreaHeight, batleAreaHWidth];
 
 
+        public Player player = new Player(36, 26, "Thomas");
 
-        public void GameAreaData()
+        public int[,] boardGameArray = new int[batleAreaHeight, batleAreaHWidth];
+
+        public void UpgradeBoardGameArray(Player player, List<Enemy> enemyList)
         {
+            AllTanksRender(player, enemyList);
+        }
+
+        public void GameAreaDataToStartGame()
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.currentTankModel = enemy.tankModel[3];
+            }
             player.currentTankModel = player.tankModel[2];
             BatleAreaFrame();
             AddOtherStructures();
-            RefreshPlayer();
+            AllTanksRender();
             //Render(); //ForTesting
         }
 
-        private void RefreshPlayer()
+        public void AllTanksRender()
+        { 
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    boardGameArray[player.Y + j, player.X + i] = 8;
+                    foreach (var enemy in enemies)
+                    {
+                        boardGameArray[enemy.Y + j, enemy.X + i] = 9;
+                    }
+                }
+            }
+        }
+        public void AllTanksRender(Player player, List<Enemy> enemyList)
         {
-            boardGameArray[player.Y, player.X] = 9;
-        } //Add player
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    boardGameArray[player.Y + j, player.X + i] = 8;
+                    foreach (var enemy in enemyList)
+                    {
+                        boardGameArray[enemy.Y + j, enemy.X + i] = 9;
+                    }
+                }
+            }
+        }
+
 
         private void BatleAreaFrame()
         {
@@ -53,17 +96,6 @@ namespace Learning_App.FinalBigHomeWork.Data
             }
         }  //Make game area frame
 
-        internal void MoveLeft()
-        {
-            boardGameArray[player.Y, player.X] = 0;
-            player.X = player.X - 2;
-            if (player.X < 2) 
-            {
-                player.X = 2;
-            }
-            RefreshPlayer();
-        }
-
         private void AddOtherStructures()
         {
             foreach (var line in structures.textLines)
@@ -80,37 +112,71 @@ namespace Learning_App.FinalBigHomeWork.Data
             }
         } //Add other structures from list in Structures class
 
-        internal void MoveRight()
+
+
+
+        internal void MovePlayerWest()
         {
-            boardGameArray[player.Y, player.X] = 0;
+            player.X = player.X - 2;
+            if (player.X < 2) 
+            {
+                player.X = 2;
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (boardGameArray[player.Y + i, player.X] == 1 || boardGameArray[player.Y + i, player.X] == 9)
+                {
+                    player.X = player.X + 2;
+                }
+            }           
+        }
+
+        internal void MovePlayerEast()
+        {
             player.X = player.X + 2;
             if (player.X > batleAreaHWidth -8)
             {
                 player.X = batleAreaHWidth -8;
             }
-            RefreshPlayer();
+            for (int i = 0; i < 3; i++)
+            {
+                if (boardGameArray[player.Y + i, player.X + 5] == 1 || boardGameArray[player.Y + i, player.X + 5] == 9)
+                {
+                    player.X = player.X - 2;
+                }
+            }
         }
 
-        internal void MoveUp()
+        internal void MovePlayerNorth()
         {
-            boardGameArray[player.Y, player.X] = 0;
             player.Y = player.Y - 1;
             if (player.Y < 1)
             {
                 player.Y = 1;
             }
-            RefreshPlayer();
+            for (int i = 0; i < 6; i++)
+            {
+                if (boardGameArray[player.Y, player.X + i] == 1 || boardGameArray[player.Y, player.X + i] == 9)
+                {
+                    player.Y = player.Y + 1;
+                }
+            }       
         }
 
-        internal void MoveDown()
+        internal void MovePlayerSouth()
         {
-            boardGameArray[player.Y, player.X] = 0;
             player.Y = player.Y + 1;
             if (player.Y > batleAreaHeight - 4)
             {
                 player.Y = batleAreaHeight - 4;
             }
-            RefreshPlayer();
+            for (int i = 0; i < 6; i++)
+            {
+                if (boardGameArray[player.Y + 2, player.X + i] == 1 || boardGameArray[player.Y + 2, player.X + i] == 9)
+                {
+                    player.Y = player.Y - 1;
+                }
+            }
         }
 
         public void Render()
@@ -125,15 +191,10 @@ namespace Learning_App.FinalBigHomeWork.Data
             }
         } //For testing
 
-        internal int[,] GetBalteAreaArray()
+        public int[,] GetBalteAreaArray()
         {
             return boardGameArray;
         } // return array to not exit from the frame of the game
-
-        internal int[,] GetBoardGameArray()
-        {
-            return boardGameArray;
-        }
 
         internal int GetBatleAreaWidth()
         {
@@ -144,5 +205,6 @@ namespace Learning_App.FinalBigHomeWork.Data
         {
             return batleAreaHeight;
         }
+   
     }
 }

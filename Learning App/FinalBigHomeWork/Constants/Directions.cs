@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Learning_App.FinalBigHomeWork.Constants
 {
-    enum TankDirection
+    enum Directions
     {
-        Up,
-        Down,
-        Left,
-        Right
+        Notrh,
+        South,
+        West,
+        East
     }
 }
