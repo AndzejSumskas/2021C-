@@ -127,6 +127,9 @@ namespace Learning_App.FinalBigHomeWork
                 {
                     ShootTheBullet();
                 }
+      
+                //gameData.Render(boardGameArray);
+                
                 System.Threading.Thread.Sleep(50);
             } while (applicationIsRunning);
         }
@@ -230,25 +233,46 @@ namespace Learning_App.FinalBigHomeWork
                             {
                                 for (int k = 0; k < 3; k++)
                                 {
-                                    boardGameArray[gameData.enemies[i].Y+k, enemies[i].X+j] = 0;
+                                    boardGameArray[enemies[i].Y+k, enemies[i].X+j] = 0;
                                 }
                             }
                             enemies.RemoveAt(i);
                         }
-                    }
-                    
+                    }                   
                 }
                 else
                 {
-                    for (int j = 0; j < numberOfBulletMoves; j++)
+                    for (int i = 0; i < numberOfBulletMoves; i++)
                     {
                         bullet.Y += numberOfBulletMovementY;
                         bullet.X += numberOfBulletMovementX;
                         if (boardGameArray[bullet.Y, bullet.X] == 1 ||
-                             boardGameArray[bullet.Y, bullet.X] == 2)
+                                 boardGameArray[bullet.Y, bullet.X] == 2)
                         {
-                            j = numberOfBulletMoves;
+                            i = numberOfBulletMoves;
                         }
+                        for (int j = 0; j < enemies.Count; j++)
+                        {
+                            
+                            
+                            if (enemies[j].X + 5 >= bullet.X && enemies[j].X < bullet.X + 6 && enemies[j].Y + 2 >= bullet.Y && enemies[j].Y < bullet.Y + 3)
+                            {
+                                for (int m = 0; m < 6; m++)
+                                {
+                                    for (int k = 0; k < 3; k++)
+                                    {
+                                        boardGameArray[enemies[j].Y + k, enemies[j].X + m] = 0;
+                                    }
+                                }
+                                enemies.RemoveAt(j);
+                                tempListOfBullets.Add(counter);
+                                counter++;
+                            }
+                        }
+
+                        //*************************
+
+                        //else if()
                     }
                     bulletIsActive = true;
                 }

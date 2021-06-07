@@ -73,7 +73,7 @@ namespace Learning_App.FinalBigHomeWork.Data
         }
 
         //public void AllTanksRender(int[,] boardGameArray)
-        //{ 
+        //{
         //    for (int i = 0; i < 6; i++)
         //    {
         //        for (int j = 0; j < 3; j++)
@@ -86,15 +86,17 @@ namespace Learning_App.FinalBigHomeWork.Data
         //        }
         //    }
         //}
-        //public void AllTanksRender(Player player, List<Enemy> enemyList)
+        //public void AllTanksRender(Player player, List<Enemy> enemyList, int[,] boardGameArray)
         //{
+        //    int deleteX = 0;
+        //    int deleteY = 0;
         //    for (int i = 0; i < 6; i++)
         //    {
         //        for (int j = 0; j < 3; j++)
-        //        {
+        //        {   
         //            boardGameArray[player.Y + j, player.X + i] = 8;
         //            foreach (var enemy in enemyList)
-        //            {
+        //            {                     
         //                boardGameArray[enemy.Y + j, enemy.X + i] = 9;
         //            }
         //        }
@@ -137,7 +139,7 @@ namespace Learning_App.FinalBigHomeWork.Data
             }
         } //Add other structures from list in Structures class
 
-        public void Render()
+        public void Render(int[,] boardGameArray)
         {
             for (int i = 0; i < batleAreaHeight; i++)
             {
