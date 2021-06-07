@@ -21,6 +21,9 @@ namespace Learning_App.FinalBigHomeWork
         public int[,] boardGameArray;
         Player player;
         public List<Enemy> enemies;
+        private int enemyWasDestroyed = 0;
+        private int playerWasDestroyed = 0;
+        GameOverWindow gameOverWindow = new GameOverWindow();
 
 
         public void StartAplication()
@@ -44,8 +47,7 @@ namespace Learning_App.FinalBigHomeWork
         private void TankHandling()
         {
             do
-            {
-                
+            {    
                 while (Console.KeyAvailable)
                  {
                    
@@ -53,6 +55,11 @@ namespace Learning_App.FinalBigHomeWork
                     
                     switch (key.Key)
                     {
+                        case ConsoleKey.Escape:
+                            applicationIsRunning = false;
+                            gameOverWindow.GameOverUpgrade(enemyWasDestroyed, playerWasDestroyed);
+                            gameOverWindow.Render();
+                            break;
                         case ConsoleKey.LeftArrow:
                             if (player.currentTankModel == player.tankModel[1])
                             {
@@ -277,6 +284,7 @@ namespace Learning_App.FinalBigHomeWork
                                 }
                                 if (bullet.GetBulletType() != "Enemy")
                                 {
+                                    enemyWasDestroyed++;
                                     enemies.RemoveAt(j);
                                     tempListOfBullets.Add(counter);
                                 }                                   
@@ -289,6 +297,7 @@ namespace Learning_App.FinalBigHomeWork
                                 player.currentTankModel = player.tankModel[2];
                                 player.X = 36;
                                 player.Y = 26;
+                                playerWasDestroyed++;
                             }
                         }
                     }
