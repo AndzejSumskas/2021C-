@@ -16,6 +16,7 @@ namespace Learning_App.FinalBigHomeWork.Gui
         public List<Bullet> listOfBulletsToBoardGame = new List<Bullet>();
 
         private string name { get; set; }
+        private string type { get; set; }
         public Bullet() : base(0, 0, 1, 1)
         {
         }
@@ -23,16 +24,22 @@ namespace Learning_App.FinalBigHomeWork.Gui
         public Bullet(int x, int y) : base(x, y, 1, 1)
         {
         }
-        public Bullet(int x, int y, string name) : base(x, y, 1, 1)
+        public Bullet(int x, int y, string name, string type) : base(x, y, 1, 1)
         {
             this.name = name;
+            this.type = type;
         }
 
         private char bullet = '☻';
 
-           internal string GetName()
+           internal string GetBulletName()
         {
             return name;
+        }
+
+        public string GetBulletType()
+        {
+            return type;
         }
 
         public override void Render()

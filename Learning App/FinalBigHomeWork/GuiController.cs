@@ -45,10 +45,12 @@ namespace Learning_App.FinalBigHomeWork
         {
             do
             {
-                loopCounter++;
+                
                 while (Console.KeyAvailable)
-                 { 
+                 {
+                   
                     var key = Console.ReadKey(true);
+                    
                     switch (key.Key)
                     {
                         case ConsoleKey.LeftArrow:
@@ -83,30 +85,39 @@ namespace Learning_App.FinalBigHomeWork
                             player.currentTankModel = player.tankModel[3];
                             tankDirection = Directions.South;
                             break;
+                        case ConsoleKey.P:
+                            AddNewEnemy();
+                            break;
                         case ConsoleKey.Spacebar:
 
                             switch (tankDirection)
                             {
                                 case Directions.Notrh:
-                                    bullet.listOfShootedBullets.Add(new Bullet(player.X + 2, player.Y - 1, $"{Directions.Notrh}"));
+                                    bullet.listOfShootedBullets.Add(new Bullet(player.X + 2, player.Y - 1, $"{Directions.Notrh}", "Player"));
                                     break;
                                 case Directions.South:
-                                    bullet.listOfShootedBullets.Add(new Bullet(player.X + 2, player.Y + 3, $"{Directions.South}"));
+                                    bullet.listOfShootedBullets.Add(new Bullet(player.X + 2, player.Y + 3, $"{Directions.South}", "Player"));
                                     break;
                                 case Directions.West:
-                                    bullet.listOfShootedBullets.Add(new Bullet(player.X - 1, player.Y + 1, $"{Directions.West}"));
+                                    bullet.listOfShootedBullets.Add(new Bullet(player.X - 1, player.Y + 1, $"{Directions.West}", "Player"));
                                     break;
                                 case Directions.East:
-                                    bullet.listOfShootedBullets.Add(new Bullet(player.X + 6, player.Y + 1, $"{Directions.East}"));
+                                    bullet.listOfShootedBullets.Add(new Bullet(player.X + 6, player.Y + 1, $"{Directions.East}", "Player"));
                                     break;
                             }
-                            bulletIsActive = true;
+                            bulletIsActive = true;                         
                             foreach (var bullet in bullet.listOfShootedBullets)
                             {
                                 bullet.Render();
                             }
                             break;
                     }
+                }
+                loopCounter++;
+
+                if (loopCounter % 10 == 0)
+                {
+                    EnemyShoots(enemies);
                 }
                 Console.SetCursorPosition(0, 0);
                 actionWindow.Render(boardGameArray);
@@ -123,10 +134,8 @@ namespace Learning_App.FinalBigHomeWork
                 {
                     bullet.Render();
                 }
-                if (bulletIsActive)
-                {
-                    ShootTheBullet();
-                }
+                 ShootTheBullet();
+
       
                 //gameData.Render(boardGameArray);
                 
@@ -161,6 +170,29 @@ namespace Learning_App.FinalBigHomeWork
             }
         }
 
+        private void EnemyShoots(List<Enemy> enemies)
+        {
+            foreach (var enemy in enemies)
+            {
+                if(enemy.currentTankModel == enemy.tankModel[1])
+                {
+                    bullet.listOfShootedBullets.Add(new Bullet(enemy.X - 1, enemy.Y + 1, $"{Directions.West}", "Enemy"));
+                }
+                if (enemy.currentTankModel == enemy.tankModel[0])
+                {
+                    bullet.listOfShootedBullets.Add(new Bullet(enemy.X + 6, enemy.Y + 1, $"{Directions.East}", "Enemy"));
+                }
+                if (enemy.currentTankModel == enemy.tankModel[2])
+                {
+                    bullet.listOfShootedBullets.Add(new Bullet(enemy.X + 2, enemy.Y - 1, $"{Directions.Notrh}", "Enemy"));
+                }
+                if (enemy.currentTankModel == enemy.tankModel[3])
+                {
+                    bullet.listOfShootedBullets.Add(new Bullet(enemy.X + 2, enemy.Y + 3, $"{Directions.South}", "Enemy"));
+                }               
+            }
+        }
+
         
         internal void ShootTheBullet()
         {
@@ -168,7 +200,7 @@ namespace Learning_App.FinalBigHomeWork
             int counter = 0;
             foreach (var bullet in bullet.listOfShootedBullets)
             {
-                switch(bullet.GetName())
+                switch(bullet.GetBulletName())
                 {
                     case "Notrh":
                         numberOfBulletMovementX = 0;
@@ -220,26 +252,7 @@ namespace Learning_App.FinalBigHomeWork
                             }
                         }
                     }
-                }
-                else   if(boardGameArray[bullet.Y, bullet.X] == 9)
-                {
-                    tempListOfBullets.Add(counter);
-                    counter++;
-                    for (int i = 0; i <enemies.Count; i++)
-                    {
-                        if (enemies[i].X + 5 >= bullet.X && enemies[i].X < bullet.X + 6 && enemies[i].Y+2 >= bullet.Y && enemies[i].Y < bullet.Y + 3)
-                        {
-                            for (int j = 0; j < 6; j++)
-                            {
-                                for (int k = 0; k < 3; k++)
-                                {
-                                    boardGameArray[enemies[i].Y+k, enemies[i].X+j] = 0;
-                                }
-                            }
-                            enemies.RemoveAt(i);
-                        }
-                    }                   
-                }
+                }              
                 else
                 {
                     for (int i = 0; i < numberOfBulletMoves; i++)
@@ -252,11 +265,9 @@ namespace Learning_App.FinalBigHomeWork
                             i = numberOfBulletMoves;
                         }
                         for (int j = 0; j < enemies.Count; j++)
-                        {
-                            
-                            
+                        {         
                             if (enemies[j].X + 5 >= bullet.X && enemies[j].X < bullet.X + 6 && enemies[j].Y + 2 >= bullet.Y && enemies[j].Y < bullet.Y + 3)
-                            {
+                            {                              
                                 for (int m = 0; m < 6; m++)
                                 {
                                     for (int k = 0; k < 3; k++)
@@ -264,19 +275,28 @@ namespace Learning_App.FinalBigHomeWork
                                         boardGameArray[enemies[j].Y + k, enemies[j].X + m] = 0;
                                     }
                                 }
-                                enemies.RemoveAt(j);
-                                tempListOfBullets.Add(counter);
-                                counter++;
+                                if (bullet.GetBulletType() != "Enemy")
+                                {
+                                    enemies.RemoveAt(j);
+                                    tempListOfBullets.Add(counter);
+                                }                                   
                             }
                         }
-
-                        //*************************
-
-                        //else if()
+                        if(bullet.GetBulletType()== "Enemy")
+                        {
+                            if (player.X + 5 >= bullet.X && player.X < bullet.X + 6 && player.Y + 2 >= bullet.Y && player.Y < bullet.Y + 3)
+                            {
+                                player.currentTankModel = player.tankModel[2];
+                                player.X = 36;
+                                player.Y = 26;
+                            }
+                        }
                     }
+                    counter++;
                     bulletIsActive = true;
                 }
             }
+            counter = 0;
               var tempList = from nr in tempListOfBullets
                            orderby nr descending
                            select nr;
@@ -289,6 +309,33 @@ namespace Learning_App.FinalBigHomeWork
         private int numberOfBulletMovementY = 0;
         private int numberOfBulletMoves = 0;
         private int numberOfExtraDestoyWall = 0;
+
+        private int enemyCount = 4;
+
+        private void AddNewEnemy()
+        {
+            int addEnemy = rnd.Next(1,4);
+            switch(addEnemy)
+            {
+                case 1:
+                    enemies.Add(new Enemy(3, 1, 1, $"Enemy{enemyCount++}"));                   
+                    break;
+                case 2:
+                    enemies.Add(new Enemy(47, 1, 1, $"Enemy{enemyCount++}"));
+                    break;
+                case 3:
+                    enemies.Add(new Enemy(91, 1, 1, $"Enemy{enemyCount++}"));
+                    break;
+            }
+            foreach (var enemy in enemies)
+            {
+                if (enemy.GetName() == $"Enemy{enemyCount - 1}")
+                {
+                    enemy.currentTankModel = enemy.tankModel[3];
+                }
+            }
+        }
+    
 
         public void MoveEnemyWest(Enemy enemy)
         {

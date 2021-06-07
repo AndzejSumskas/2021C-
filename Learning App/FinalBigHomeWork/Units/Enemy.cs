@@ -21,5 +21,9 @@ namespace Learning_App.FinalBigHomeWork.Units
         {
             base.Render();
         }
+        public string GetName()
+        {
+            return name;
+        }
     }
 }
